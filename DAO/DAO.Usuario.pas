@@ -3,7 +3,11 @@ unit DAO.Usuario;
 interface
 
 uses
-  DB, DMDados, Model.Usuario;
+  DB,
+  DMDados,
+  Model.Usuario,
+  FireDAC.Comp.Client,
+  System.SysUtils;
 
 type
   TDAOUsuario = class
@@ -28,7 +32,8 @@ begin
   try
     with DM_Dados.FDQuery1 do
     begin
-      SQL.Text := 'INSERT INTO usuario (nome, email, senha) values (:nome, :email, :senha)';
+      SQL.Text := 'INSERT INTO usuario (nome, email, senha) values' +
+                                      '(:nome, :email, :senha)';
       ParamByName('nome').AsString := aValue.Nome;
       ParamByName('email').AsString := aValue.Email;
       ParamByName('senha').AsString := aValue.Senha;
@@ -43,8 +48,30 @@ begin
 end;
 
 function TDAOUsuario.LogarUsuario(aValue: TUsuario): TUsuario;
+var
+  Usuario: TUsuario;
 begin
-
+  Usuario := TUsuario.Create;
+  try
+    with DM_Dados.FDQuery1 do
+    begin
+      SQL.Text := 'SELETC * FROM usuario where email = email';
+      ParamByName('email').AsString := aValue.Email;
+      open;
+      if not IsEmpty then
+        begin
+        //Ver com Erick se há a necessidade de trazer o ID_USUARIO do banco
+        //mesmo que não venha ser exibido
+         Usuario.Email := FieldByName('email').AsString;
+         Usuario.Senha := FieldByName('senha').AsString;
+        end;
+    end;
+    Result := Usuario;
+  except
+    FreeAndNil(Usuario);
+    ShowMessage('Verifique se email e senha estão corretos!');
+    raise
+  end;
 end;
 
 end.
