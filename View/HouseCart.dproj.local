@@ -1,9 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
-  <Transactions>
-    <Transaction>2025/02/26 21:01:02.005,=C:\Users\EricGaldino\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2025/02/26 21:11:06.865,C:\Estudos\DelphiEstudos\AulasErick\View\View.CadLogin.pas=C:\Users\EricGaldino\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2025/02/26 21:11:06.865,C:\Estudos\DelphiEstudos\AulasErick\View\View.CadLogin.dfm=C:\Users\EricGaldino\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>2025/02/26 21:11:18.227,C:\Estudos\DelphiEstudos\AulasErick\View\HouseCart.dproj=C:\Users\EricGaldino\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+	<Transactions>
+    <Transaction>2025/02/26 21:01:02.000.005,=C:\Users\EricGaldino\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/02/26 21:11:06.000.865,C:\Users\EricGaldino\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Estudos\DelphiEstudos\AulasErick\View\View.CadLogin.pas</Transaction>
+    <Transaction>2025/02/26 21:11:06.000.865,C:\Users\EricGaldino\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Estudos\DelphiEstudos\AulasErick\View\View.CadLogin.dfm</Transaction>
+    <Transaction>2025/02/26 21:11:18.000.227,C:\Users\EricGaldino\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Estudos\DelphiEstudos\AulasErick\View\HouseCart.dproj</Transaction>
+    <Transaction>2025/02/28 15:31:48.000.796,C:\Estudos\DelphiEstudos\AulasErick\View\View.CadLogin.pas=C:\Estudos\DelphiEstudos\AulasErick\View\View.Login.pas</Transaction>
+    <Transaction>2025/02/28 15:31:48.000.796,C:\Estudos\DelphiEstudos\AulasErick\View\View.CadLogin.dfm=C:\Estudos\DelphiEstudos\AulasErick\View\View.Login.dfm</Transaction>
+    <Transaction>2025/02/28 15:39:17.000.032,C:\Estudos\DelphiEstudos\AulasErick\View\View.Login.dfm=C:\Estudos\DelphiEstudos\AulasErick\View\View.Cadastro.dfm</Transaction>
+    <Transaction>2025/02/28 15:39:17.000.032,C:\Estudos\DelphiEstudos\AulasErick\View\View.Login.pas=C:\Estudos\DelphiEstudos\AulasErick\View\View.Cadastro.pas</Transaction>
+    <Transaction>2025/02/28 15:40:50.000.918,C:\Estudos\DelphiEstudos\AulasErick\View\View.Cadastro.dfm=C:\Estudos\DelphiEstudos\AulasErick\View\View.Login.dfm</Transaction>
+    <Transaction>2025/02/28 15:40:50.000.918,C:\Estudos\DelphiEstudos\AulasErick\View\View.Cadastro.pas=C:\Estudos\DelphiEstudos\AulasErick\View\View.Login.pas</Transaction>
+    <Transaction>2025/02/28 15:44:22.000.553,=C:\Estudos\DelphiEstudos\AulasErick\View\Unit1.pas</Transaction>
+    <Transaction>2025/02/28 15:47:25.518,=C:\Estudos\DelphiEstudos\AulasErick\View\Unit1.pas</Transaction>
+    <Transaction>2025/02/28 15:47:40.020,C:\Estudos\DelphiEstudos\AulasErick\View\View.Cadastro.dfm=C:\Estudos\DelphiEstudos\AulasErick\View\Unit1.dfm</Transaction>
+    <Transaction>2025/02/28 15:47:40.020,C:\Estudos\DelphiEstudos\AulasErick\View\View.Cadastro.pas=C:\Estudos\DelphiEstudos\AulasErick\View\Unit1.pas</Transaction>
+    <Transaction>2025/02/28 16:42:07.889,=C:\Estudos\DelphiEstudos\AulasErick\View\Unit1.pas</Transaction>
+    <Transaction>2025/02/28 16:43:11.750,C:\Estudos\DelphiEstudos\AulasErick\View\View.CadProduto.pas=C:\Estudos\DelphiEstudos\AulasErick\View\Unit1.pas</Transaction>
+    <Transaction>2025/02/28 16:43:29.487,C:\Estudos\DelphiEstudos\AulasErick\View\View.Cadastro.pas=</Transaction>
+    <Transaction>2025/02/28 16:43:34.839,=C:\Estudos\DelphiEstudos\AulasErick\View\Unit1.pas</Transaction>
+    <Transaction>2025/02/28 16:43:51.186,C:\Estudos\DelphiEstudos\AulasErick\View\View.Cadastro.pas=C:\Estudos\DelphiEstudos\AulasErick\View\Unit1.pas</Transaction>
+    <Transaction>2025/02/28 16:43:51.186,C:\Estudos\DelphiEstudos\AulasErick\View\View.Cadastro.dfm=C:\Estudos\DelphiEstudos\AulasErick\View\Unit1.dfm</Transaction>
+    <Transaction>2025/02/28 16:44:36.133,C:\Estudos\DelphiEstudos\AulasErick\View\View.CadProduto.pas=</Transaction>
+    <Transaction>2025/02/28 16:45:39.332,=C:\Estudos\DelphiEstudos\AulasErick\View\View.CadProduto.pas</Transaction>
+    <Transaction>2025/02/28 16:45:45.606,C:\Estudos\DelphiEstudos\AulasErick\View\View.CadProduto.pas=</Transaction>
+    <Transaction>2025/02/28 17:33:36.954,=C:\Estudos\DelphiEstudos\AulasErick\View\Unit1.pas</Transaction>
+    <Transaction>2025/02/28 17:39:55.160,C:\Estudos\DelphiEstudos\AulasErick\View\View.CadProduto.pas=C:\Estudos\DelphiEstudos\AulasErick\View\Unit1.pas</Transaction>
+    <Transaction>2025/02/28 17:39:55.160,C:\Estudos\DelphiEstudos\AulasErick\View\View.CadProduto.dfm=C:\Estudos\DelphiEstudos\AulasErick\View\Unit1.dfm</Transaction>
   </Transactions>
 </BorlandProject>

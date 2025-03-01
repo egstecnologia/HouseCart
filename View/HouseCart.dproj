@@ -98,8 +98,16 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="View.CadLogin.pas">
-            <Form>frmCadLogin</Form>
+        <DCCReference Include="View.Login.pas">
+            <Form>frmLogin</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="View.Cadastro.pas">
+            <Form>frmCadastro</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="View.CadProduto.pas">
+            <Form>frmCadastroProduto</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">
