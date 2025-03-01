@@ -110,6 +110,14 @@
             <Form>frmCadastroProduto</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\Model\Model.Usuario.pas"/>
+        <DCCReference Include="..\Controller\Controller.Usuario.pas"/>
+        <DCCReference Include="..\DAO\DAO.Usuario.pas"/>
+        <DCCReference Include="..\DMDados.pas">
+            <Form>DM_Dados</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

@@ -4,7 +4,11 @@ uses
   Vcl.Forms,
   View.Login in 'View.Login.pas' {frmLogin},
   View.Cadastro in 'View.Cadastro.pas' {frmCadastro},
-  View.CadProduto in 'View.CadProduto.pas' {frmCadastroProduto};
+  View.CadProduto in 'View.CadProduto.pas' {frmCadastroProduto},
+  Model.Usuario in '..\Model\Model.Usuario.pas',
+  Controller.Usuario in '..\Controller\Controller.Usuario.pas',
+  DAO.Usuario in '..\DAO\DAO.Usuario.pas',
+  DMDados in '..\DMDados.pas' {DM_Dados: TDataModule};
 
 {$R *.res}
 
@@ -14,5 +18,6 @@ begin
   Application.CreateForm(TfrmLogin, frmLogin);
   Application.CreateForm(TfrmCadastro, frmCadastro);
   Application.CreateForm(TfrmCadastroProduto, frmCadastroProduto);
+  Application.CreateForm(TDM_Dados, DM_Dados);
   Application.Run;
 end.
