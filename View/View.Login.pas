@@ -30,6 +30,9 @@ type
     imgLogin: TImage;
     edtUsuario: TEdit;
     edtSenha: TEdit;
+    lblTextoCadastro: TLabel;
+    lblClickAqui: TLabel;
+    procedure lblClickAquiClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -40,7 +43,19 @@ var
   frmLogin: TfrmLogin;
 
 implementation
+uses
+  View.Cadastro;
 
 {$R *.dfm}
+
+procedure TfrmLogin.lblClickAquiClick(Sender: TObject);
+begin
+  frmCadastro := TfrmCadastro.Create(nil);
+  try
+    frmCadastro.ShowModal;
+  finally
+    FreeAndNil(frmCadastro);
+  end;
+end;
 
 end.

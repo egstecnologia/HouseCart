@@ -1803,7 +1803,7 @@ object frmCadastro: TfrmCadastro
               Top = 0
               Width = 97
               Height = 25
-              Caption = 'Entrar'
+              Caption = 'Cadastrar'
               Flat = True
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWhite
@@ -1811,6 +1811,7 @@ object frmCadastro: TfrmCadastro
               Font.Name = 'Segoe UI'
               Font.Style = []
               ParentFont = False
+              OnClick = sbtnEntrarClick
             end
           end
           object pnlSair: TPanel
@@ -1864,7 +1865,7 @@ object frmCadastro: TfrmCadastro
             BorderStyle = bsNone
             TabOrder = 3
           end
-          object edtCadUsuarui: TEdit
+          object edtCadUsuario: TEdit
             Left = 100
             Top = 44
             Width = 222

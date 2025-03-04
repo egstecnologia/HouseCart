@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Buttons, Vcl.ExtCtrls, Vcl.StdCtrls,
-  Vcl.Imaging.pngimage;
+  Vcl.Imaging.pngimage, Controller.Usuario, Model.Usuario;
 
 type
   TfrmCadastro = class(TForm)
@@ -32,7 +32,8 @@ type
     shpEmail: TShape;
     edtEmail: TEdit;
     edtCadSenha: TEdit;
-    edtCadUsuarui: TEdit;
+    edtCadUsuario: TEdit;
+    procedure sbtnEntrarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -45,5 +46,28 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmCadastro.sbtnEntrarClick(Sender: TObject);
+var
+  Usuario: TUsuario;
+  Controller : TControllerUsuario;
+  MyClass: TComponent;
+begin
+  Usuario := TUsuario.Create;
+  Controller := TControllerUsuario.Create;
+  try
+    Usuario.Nome  := edtCadUsuario.Text;
+    Usuario.Senha := edtCadSenha.Text;
+    Usuario.Email := edtEmail.Text;
+
+    if Controller.CadastraUsuario(Usuario) then
+      ShowMessage('Usuario cadastrado com sucesso!')
+    else
+      ShowMessage('Erro, tente novamente')
+  finally
+    Usuario.Free;
+    Controller.Free;
+  end;
+end;
 
 end.

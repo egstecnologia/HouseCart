@@ -1710,7 +1710,7 @@ object frmLogin: TfrmLogin
           TabOrder = 0
           object lblLogin: TLabel
             Left = 166
-            Top = 32
+            Top = 16
             Width = 49
             Height = 28
             Caption = 'Login'
@@ -1723,7 +1723,7 @@ object frmLogin: TfrmLogin
           end
           object lblSenha: TLabel
             Left = 21
-            Top = 138
+            Top = 122
             Width = 62
             Height = 28
             Caption = 'Senha: '
@@ -1736,7 +1736,7 @@ object frmLogin: TfrmLogin
           end
           object lblUsuario: TLabel
             Left = 12
-            Top = 80
+            Top = 64
             Width = 71
             Height = 28
             Caption = 'Usuario:'
@@ -1749,21 +1749,42 @@ object frmLogin: TfrmLogin
           end
           object shpSenha: TShape
             Left = 89
-            Top = 138
+            Top = 122
             Width = 241
             Height = 33
             Shape = stRoundRect
           end
           object shpUsuario: TShape
             Left = 89
-            Top = 80
+            Top = 64
             Width = 241
             Height = 33
             Shape = stRoundRect
           end
+          object lblTextoCadastro: TLabel
+            Left = 152
+            Top = 232
+            Width = 74
+            Height = 15
+            Caption = 'Para cadastrar'
+          end
+          object lblClickAqui: TLabel
+            Left = 234
+            Top = 227
+            Width = 69
+            Height = 21
+            Caption = 'Click Aqui'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -16
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            OnClick = lblClickAquiClick
+          end
           object pnlBtnEntrar: TPanel
             Left = 89
-            Top = 188
+            Top = 172
             Width = 121
             Height = 33
             BevelOuter = bvNone
@@ -1795,7 +1816,7 @@ object frmLogin: TfrmLogin
           end
           object pnlSair: TPanel
             Left = 216
-            Top = 187
+            Top = 171
             Width = 116
             Height = 33
             Align = alCustom
@@ -1828,7 +1849,7 @@ object frmLogin: TfrmLogin
           end
           object edtUsuario: TEdit
             Left = 99
-            Top = 85
+            Top = 69
             Width = 222
             Height = 23
             BevelOuter = bvNone
@@ -1837,7 +1858,7 @@ object frmLogin: TfrmLogin
           end
           object edtSenha: TEdit
             Left = 99
-            Top = 144
+            Top = 128
             Width = 222
             Height = 23
             BevelOuter = bvNone

@@ -16,7 +16,6 @@ type
   public
     function LogarUsuario(aValue :TUsuario) : TUsuario;
     function CadastrarUsuario (aValue :TUsuario): Boolean;
-
   end;
 
 implementation
@@ -27,22 +26,28 @@ uses
 { TDAOUsuario }
 
 function TDAOUsuario.CadastrarUsuario(aValue: TUsuario): Boolean;
+var
+  Query : TFDQuery;
 begin
-
+  Result := False;
+  Query := TFDQuery.Create(nil);
   try
-    with DM_Dados.FDQuery1 do
-    begin
-      SQL.Text := 'INSERT INTO usuario (nome, email, senha) values' +
+      Query.Connection := DM_Dados.FDConnection1;
+      Query.SQL.Text := 'INSERT INTO usuario (nome, email, senha) values' +
                                       '(:nome, :email, :senha)';
-      ParamByName('nome').AsString := aValue.Nome;
-      ParamByName('email').AsString := aValue.Email;
-      ParamByName('senha').AsString := aValue.Senha;
-      ExecSQL;
+      Query.ParamByName('nome').AsString := aValue.Nome;
+      Query.ParamByName('email').AsString := aValue.Email;
+      Query.ParamByName('senha').AsString := aValue.Senha;
+
+     try
+      Query.ExecSQL;
+      Result := True;
+    except
+      on E: Exception do
+        ShowMessage('Erro ao cadastrar usuário: ' + E.Message);
     end;
-    Result := True;
-  except
-    Result := False;
-    ShowMessage('Erro ao cadastrar usuário!');
+  finally
+    Query.Free;
   end;
 
 end;

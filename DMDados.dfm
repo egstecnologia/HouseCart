@@ -8,8 +8,9 @@ object DM_Dados: TDM_Dados
       'User_Name=SYSDBA'
       'Password=masterkey'
       'DriverID=fB')
+    Connected = True
     LoginPrompt = False
-    Left = 80
+    Left = 48
     Top = 88
   end
   object FDPhysFBDriverLink1: TFDPhysFBDriverLink
@@ -18,6 +19,8 @@ object DM_Dados: TDM_Dados
   end
   object FDQuery1: TFDQuery
     Connection = FDConnection1
+    SQL.Strings = (
+      '')
     Left = 272
     Top = 88
   end
