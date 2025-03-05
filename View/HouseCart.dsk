@@ -14,15 +14,24 @@ File_11=TSourceModule,'C:\GtiSistemas\Fontes\GtiVendas\ClasseComandas.pas',0,1,5
 File_12=TSourceModule,'c:\program files (x86)\embarcadero\studio\22.0\SOURCE\VCL\Vcl.Forms.pas',0,1,11576,1,11591,0,0,{{1990,4}
 
 [Modules]
-Module0=C:\Estudos\DelphiEstudos\AulasErick\View\View.Cadastro.pas
-Module1=C:\Estudos\DelphiEstudos\AulasErick\Controller\Controller.Usuario.pas
+Module0=C:\Estudos\DelphiEstudos\AulasErick\DAO\DAO.Usuario.pas
+Module1=C:\Estudos\DelphiEstudos\AulasErick\DMDados.pas
 Module2=C:\Estudos\DelphiEstudos\AulasErick\Model\Model.Usuario.pas
-Module3=C:\Estudos\DelphiEstudos\AulasErick\DAO\DAO.Usuario.pas
-Module4=C:\Estudos\DelphiEstudos\AulasErick\View\View.CadProduto.pas
+Module3=C:\Estudos\DelphiEstudos\AulasErick\View\View.Cadastro.pas
+Module4=C:\Estudos\DelphiEstudos\AulasErick\Controller\Controller.Usuario.pas
 Module5=C:\Estudos\DelphiEstudos\AulasErick\View\View.Login.pas
-Module6=C:\Estudos\DelphiEstudos\AulasErick\DMDados.pas
+Module6=C:\Estudos\DelphiEstudos\AulasErick\View\View.CadProduto.pas
 Count=7
 EditWindowCount=1
+
+[C:\Estudos\DelphiEstudos\AulasErick\DAO\DAO.Usuario.pas]
+ModuleType=TSourceModule
+
+[C:\Estudos\DelphiEstudos\AulasErick\DMDados.pas]
+ModuleType=TSourceModule
+
+[C:\Estudos\DelphiEstudos\AulasErick\Model\Model.Usuario.pas]
+ModuleType=TSourceModule
 
 [C:\Estudos\DelphiEstudos\AulasErick\View\View.Cadastro.pas]
 ModuleType=TSourceModule
@@ -30,24 +39,15 @@ ModuleType=TSourceModule
 [C:\Estudos\DelphiEstudos\AulasErick\Controller\Controller.Usuario.pas]
 ModuleType=TSourceModule
 
-[C:\Estudos\DelphiEstudos\AulasErick\Model\Model.Usuario.pas]
-ModuleType=TSourceModule
-
-[C:\Estudos\DelphiEstudos\AulasErick\DAO\DAO.Usuario.pas]
+[C:\Estudos\DelphiEstudos\AulasErick\View\View.Login.pas]
 ModuleType=TSourceModule
 
 [C:\Estudos\DelphiEstudos\AulasErick\View\View.CadProduto.pas]
 ModuleType=TSourceModule
 
-[C:\Estudos\DelphiEstudos\AulasErick\View\View.Login.pas]
-ModuleType=TSourceModule
-
-[C:\Estudos\DelphiEstudos\AulasErick\DMDados.pas]
-ModuleType=TSourceModule
-
 [EditWindow0]
 ViewCount=7
-CurrentEditView=C:\Estudos\DelphiEstudos\AulasErick\View\View.Cadastro.pas
+CurrentEditView=C:\Estudos\DelphiEstudos\AulasErick\DAO\DAO.Usuario.pas
 View0=0
 View1=1
 View2=2
@@ -86,28 +86,6 @@ BottomMiddelPanelData=0000080001020200000009000000446F636B5369746530100000004772
 
 [View0]
 CustomEditViewType=TEditView
-Module=C:\Estudos\DelphiEstudos\AulasErick\DMDados.pas
-CursorX=24
-CursorY=17
-TopLine=1
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=Borland.FormDesignerView
-
-[View1]
-CustomEditViewType=TEditView
-Module=C:\Estudos\DelphiEstudos\AulasErick\View\View.Login.pas
-CursorX=1
-CursorY=46
-TopLine=46
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=Borland.FormDesignerView
-
-[View2]
-CustomEditViewType=TEditView
 Module=C:\Estudos\DelphiEstudos\AulasErick\View\View.CadProduto.pas
 CursorX=21
 CursorY=9
@@ -117,12 +95,34 @@ Elisions=
 Bookmarks=
 EditViewName=Borland.FormDesignerView
 
+[View1]
+CustomEditViewType=TEditView
+Module=C:\Estudos\DelphiEstudos\AulasErick\DMDados.pas
+CursorX=12
+CursorY=14
+TopLine=1
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=C:\Estudos\DelphiEstudos\AulasErick\DMDados.pas
+
+[View2]
+CustomEditViewType=TEditView
+Module=C:\Estudos\DelphiEstudos\AulasErick\View\View.Login.pas
+CursorX=26
+CursorY=55
+TopLine=34
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=C:\Estudos\DelphiEstudos\AulasErick\View\View.Login.pas
+
 [View3]
 CustomEditViewType=TEditView
 Module=C:\Estudos\DelphiEstudos\AulasErick\Controller\Controller.Usuario.pas
-CursorX=21
-CursorY=9
-TopLine=7
+CursorX=38
+CursorY=1
+TopLine=1
 LeftCol=1
 Elisions=
 Bookmarks=
@@ -131,9 +131,9 @@ EditViewName=C:\Estudos\DelphiEstudos\AulasErick\Controller\Controller.Usuario.p
 [View4]
 CustomEditViewType=TEditView
 Module=C:\Estudos\DelphiEstudos\AulasErick\View\View.Cadastro.pas
-CursorX=21
-CursorY=73
-TopLine=42
+CursorX=28
+CursorY=44
+TopLine=9
 LeftCol=1
 Elisions=
 Bookmarks=
@@ -142,9 +142,9 @@ EditViewName=C:\Estudos\DelphiEstudos\AulasErick\View\View.Cadastro.pas
 [View5]
 CustomEditViewType=TEditView
 Module=C:\Estudos\DelphiEstudos\AulasErick\DAO\DAO.Usuario.pas
-CursorX=59
-CursorY=18
-TopLine=7
+CursorX=10
+CursorY=7
+TopLine=31
 LeftCol=1
 Elisions=
 Bookmarks=
@@ -311,8 +311,8 @@ SplitPos=111
 
 [PropInspDesignerSelection]
 ArrangeBy=Name
-SelectedItem=Name,
-ExpandedItems=Anchors=0,BevelEdges=0,Constraints=0,Font=0,LiveBindings=0,"LiveBindings Designer=0",Margins=0
+SelectedItem=Connected,AfterCommit
+ExpandedItems=Anchors=0,Constraints=0,Font=1,LiveBindings=0,"LiveBindings Designer=0",Margins=0,StyleElements=0,Touch=0,Font.Style=0,FetchOptions=0,FieldOptions=0,FilterChanges=0,FilterOptions=0,FormatOptions=0,ResourceOptions=0,ActiveStoredUsage=0,Connection=0,Params=0,ConnectedStoredUsage=0,TxOptions=0
 
 [frmDesignPreview]
 PercentageSizes=1
@@ -323,11 +323,11 @@ State=0
 Left=0
 Top=0
 Width=2000
-Height=8382
+Height=6298
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2000
-ClientHeight=8382
+ClientHeight=6298
 TBDockHeight=5959
 LRDockWidth=2510
 Dockable=1
@@ -339,8 +339,8 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=0
-Top=0
+Left=-1528
+Top=236
 Width=276
 Height=359
 MaxLeft=-1
@@ -444,11 +444,11 @@ State=0
 Left=0
 Top=0
 Width=2339
-Height=1202
+Height=969
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2339
-ClientHeight=1202
+ClientHeight=969
 TBDockHeight=2316
 LRDockWidth=2823
 Dockable=1
@@ -509,11 +509,11 @@ State=0
 Left=0
 Top=0
 Width=2000
-Height=8382
+Height=6298
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2000
-ClientHeight=8382
+ClientHeight=6298
 TBDockHeight=4884
 LRDockWidth=7151
 Dockable=1
@@ -525,8 +525,8 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=0
-Top=0
+Left=380
+Top=809
 Width=2854
 Height=3207
 MaxLeft=-1
@@ -545,7 +545,7 @@ Visible=0
 Docked=1
 State=0
 Left=-8
-Top=-8
+Top=-131
 Width=1849
 Height=3140
 MaxLeft=-1
@@ -649,11 +649,11 @@ State=0
 Left=0
 Top=0
 Width=2000
-Height=8382
+Height=6298
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2000
-ClientHeight=8382
+ClientHeight=6298
 TBDockHeight=4884
 LRDockWidth=5307
 Dockable=1
@@ -668,11 +668,11 @@ State=0
 Left=0
 Top=0
 Width=1896
-Height=3837
+Height=2800
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=1896
-ClientHeight=3837
+ClientHeight=2800
 TBDockHeight=3682
 LRDockWidth=1896
 Dockable=1
@@ -732,8 +732,8 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=8
-Top=8
+Left=952
+Top=28
 Width=3823
 Height=1415
 MaxLeft=-1

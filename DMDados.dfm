@@ -17,11 +17,4 @@ object DM_Dados: TDM_Dados
     Left = 168
     Top = 88
   end
-  object FDQuery1: TFDQuery
-    Connection = FDConnection1
-    SQL.Strings = (
-      '')
-    Left = 272
-    Top = 88
-  end
 end

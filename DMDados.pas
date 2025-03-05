@@ -14,7 +14,6 @@ type
   TDM_Dados = class(TDataModule)
     FDConnection1: TFDConnection;
     FDPhysFBDriverLink1: TFDPhysFBDriverLink;
-    FDQuery1: TFDQuery;
   private
     { Private declarations }
   public
