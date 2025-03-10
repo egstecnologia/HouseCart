@@ -1722,8 +1722,8 @@ object frmCadastro: TfrmCadastro
             ParentFont = False
           end
           object lblSenha: TLabel
-            Left = 21
-            Top = 93
+            Left = 49
+            Top = 82
             Width = 62
             Height = 28
             Caption = 'Senha: '
@@ -1735,7 +1735,7 @@ object frmCadastro: TfrmCadastro
             ParentFont = False
           end
           object lblUsuario: TLabel
-            Left = 12
+            Left = 40
             Top = 40
             Width = 71
             Height = 28
@@ -1748,22 +1748,22 @@ object frmCadastro: TfrmCadastro
             ParentFont = False
           end
           object shpSenha: TShape
-            Left = 89
-            Top = 93
+            Left = 112
+            Top = 82
             Width = 241
             Height = 33
             Shape = stRoundRect
           end
           object shpUsuario: TShape
-            Left = 89
+            Left = 112
             Top = 40
             Width = 241
             Height = 33
             Shape = stRoundRect
           end
           object lblEmail: TLabel
-            Left = 21
-            Top = 146
+            Left = 49
+            Top = 174
             Width = 56
             Height = 28
             Caption = 'Email: '
@@ -1775,15 +1775,35 @@ object frmCadastro: TfrmCadastro
             ParentFont = False
           end
           object shpEmail: TShape
-            Left = 89
-            Top = 148
+            Left = 112
+            Top = 170
+            Width = 241
+            Height = 33
+            Shape = stRoundRect
+          end
+          object lblConfSenha: TLabel
+            Left = 0
+            Top = 132
+            Width = 106
+            Height = 23
+            Caption = 'Confir. Senha:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -17
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+          end
+          object shpConfSenha: TShape
+            Left = 112
+            Top = 126
             Width = 241
             Height = 33
             Shape = stRoundRect
           end
           object pnlBtnEntrar: TPanel
-            Left = 89
-            Top = 188
+            Left = 111
+            Top = 221
             Width = 121
             Height = 33
             BevelOuter = bvNone
@@ -1815,8 +1835,8 @@ object frmCadastro: TfrmCadastro
             end
           end
           object pnlSair: TPanel
-            Left = 216
-            Top = 187
+            Left = 238
+            Top = 221
             Width = 116
             Height = 33
             Align = alCustom
@@ -1825,7 +1845,7 @@ object frmCadastro: TfrmCadastro
             TabOrder = 1
             object shpSair: TShape
               Left = 0
-              Top = 0
+              Top = 1
               Width = 115
               Height = 33
               Brush.Color = 1542597
@@ -1834,7 +1854,7 @@ object frmCadastro: TfrmCadastro
             end
             object btnSair: TSpeedButton
               Left = 8
-              Top = 2
+              Top = 3
               Width = 97
               Height = 25
               Caption = 'Sair'
@@ -1848,8 +1868,8 @@ object frmCadastro: TfrmCadastro
             end
           end
           object edtEmail: TEdit
-            Left = 99
-            Top = 153
+            Left = 122
+            Top = 175
             Width = 222
             Height = 23
             BevelOuter = bvNone
@@ -1857,8 +1877,8 @@ object frmCadastro: TfrmCadastro
             TabOrder = 2
           end
           object edtCadSenha: TEdit
-            Left = 98
-            Top = 97
+            Left = 121
+            Top = 86
             Width = 222
             Height = 23
             BevelOuter = bvNone
@@ -1866,13 +1886,22 @@ object frmCadastro: TfrmCadastro
             TabOrder = 3
           end
           object edtCadUsuario: TEdit
-            Left = 100
+            Left = 123
             Top = 44
             Width = 222
             Height = 23
             BevelOuter = bvNone
             BorderStyle = bsNone
             TabOrder = 4
+          end
+          object edtConfSenha: TEdit
+            Left = 121
+            Top = 130
+            Width = 222
+            Height = 23
+            BevelOuter = bvNone
+            BorderStyle = bsNone
+            TabOrder = 5
           end
         end
       end

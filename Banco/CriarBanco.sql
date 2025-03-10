@@ -5,6 +5,19 @@ EMAIL varchar(255),
 SENHA varchar(30)
 )
 
+create sequence GEN_ID_USUARIO;
+
+set term ^^;
+    create trigger TRG_ID_USUARIO FOR usuario
+    active before insert position 0
+as
+begin
+    if (NEW.ID_USUARIO is NULL) then
+       NEW.ID_USUARIO = next value for gen_id_usuario;
+end ^^
+set term;^^
+
+
 create table CASA (
 ID_CASA INT primary KEY not null,
 DESCRICAO varchar(255),
@@ -54,7 +67,9 @@ foreign key (ID_USUARIO)
 references usuario (ID_USUARIO)
 
 
-alter table CASA
-add constraint FK_CASA_IDCASA
+alter table produto
+add constraint FK_PRODUTO_IDCASA
 foreign key (ID_CASA)
 references CASA (ID_CASA)
+
+alter table usuario

@@ -12,10 +12,13 @@ uses
 type
   TDAOUsuario = class
   private
-
+    FConn: TFDConnection;
   public
-    function LogarUsuario(aValue :TUsuario) : TUsuario;
-    function CadastrarUsuario (aValue :TUsuario): Boolean;
+    constructor Create(aConn: TFDConnection); reintroduce;
+    destructor Destroy; override;
+    function LogarUsuario(aValue :TUsuario): TUsuario;
+    function CadastrarUsuario(aValue :TUsuario): Integer;
+    function CheckEmail(aEmail: String): Boolean;
   end;
 
 implementation
@@ -25,48 +28,34 @@ uses
 
 { TDAOUsuario }
 
-function TDAOUsuario.CadastrarUsuario(aValue: TUsuario): Boolean;
+function TDAOUsuario.CadastrarUsuario(aValue: TUsuario): Integer;
 var
   Query: TFDQuery;
 begin
-  Result := False;
   Query := TFDQuery.Create(nil);
-
-  if Query = nil then
-  begin
-    ShowMessage('Erro ao criar Query.');
-    Exit;
-  end;
-
   try
-    if DM_Dados = nil then
-    begin
-      ShowMessage('Erro: DataModule não foi instanciado.');
-      Exit;
-    end;
-
-    if DM_Dados.FDConnection1 = nil then
-    begin
-      ShowMessage('Erro: FDConnection1 não foi inicializado.');
-      Exit;
-    end;
-
-    if not DM_Dados.FDConnection1.Connected then
-      DM_Dados.FDConnection1.Connected := True;
-
-    Query.Connection := DM_Dados.FDConnection1;
-    Query.SQL.Text := 'INSERT INTO usuario (nome, email, senha) VALUES (:nome, :email, :senha)';
-
-    Query.ParamByName('nome').AsString := aValue.Nome;
-    Query.ParamByName('email').AsString := aValue.Email;
-    Query.ParamByName('senha').AsString := aValue.Senha;
 
     try
+      FConn.StartTransaction;
+      Query.Close;
+      Query.SQL.Clear;
+      Query.Connection := FConn;
+      Query.SQL.Add('INSERT INTO');
+      Query.SQL.Add(' usuario');
+      Query.SQL.Add('(nome, email, senha)');
+      Query.SQL.Add('VALUES');
+      Query.SQL.Add(' (:nome, :email, :senha)');
+      Query.ParamByName('nome').AsString := aValue.Nome;
+      Query.ParamByName('email').AsString := aValue.Email;
+      Query.ParamByName('senha').AsString := aValue.Senha;
       Query.ExecSQL;
-      Result := True;
+      FConn.Commit;
     except
       on E: Exception do
-        ShowMessage('Erro ao cadastrar usuário: ' + E.Message);
+      begin
+        FConn.Rollback;
+        raise Exception.Create('Erro ao cadastrar usuário:'+ E.Message );
+      end;
     end;
   finally
     Query.Free;
@@ -98,6 +87,40 @@ end;
 //    Query.Free;
 //  end;
 //end;
+
+function TDAOUsuario.CheckEmail(aEmail: String): Boolean;
+var
+  lQuery: TFDQuery;
+begin
+  lQuery := TFDQuery.Create(nil);
+  try
+    lQuery.Close;
+    lQuery.SQL.Clear;
+    lQuery.SQL.Add('SELECT');
+    lQuery.SQL.Add('  email');
+    lQuery.SQL.Add('FROM');
+    lQuery.SQL.Add('  usuario');
+    lQuery.SQL.Add('WHERE');
+    lQuery.SQL.Add('  email = :email');
+    lQuery.ParamByName('email').AsString := aEmail;
+    lQuery.Open;
+    Result := lQuery.RecordCount > 0;
+  finally
+    lQuery.Free;
+  end;
+end;
+
+constructor TDAOUsuario.Create(aConn: TFDConnection);
+begin
+  inherited Create;
+  FConn := aConn;
+end;
+
+destructor TDAOUsuario.Destroy;
+begin
+  FConn.Free;
+  inherited;
+end;
 
 function TDAOUsuario.LogarUsuario(aValue: TUsuario): TUsuario;
 //var

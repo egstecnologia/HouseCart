@@ -33,6 +33,9 @@ type
     edtEmail: TEdit;
     edtCadSenha: TEdit;
     edtCadUsuario: TEdit;
+    edtConfSenha: TEdit;
+    lblConfSenha: TLabel;
+    shpConfSenha: TShape;
     procedure sbtnEntrarClick(Sender: TObject);
   private
     { Private declarations }
@@ -49,24 +52,31 @@ implementation
 
 procedure TfrmCadastro.sbtnEntrarClick(Sender: TObject);
 var
-  Usuario: TUsuario;
-  Controller : TControllerUsuario;
-  MyClass: TComponent;
+  lUsuario: TUsuario;
+  lController : TControllerUsuario;
 begin
-  Usuario := TUsuario.Create;
-  Controller := TControllerUsuario.Create;
+  lUsuario := TUsuario.Create;
+  lController := TControllerUsuario.Create;
   try
-    Usuario.Nome  := edtCadUsuario.Text;
-    Usuario.Senha := edtCadSenha.Text;
-    Usuario.Email := edtEmail.Text;
-
-    if Controller.CadastraUsuario(Usuario) then
-      ShowMessage('Usuario cadastrado com sucesso!')
-    else
-      ShowMessage('Erro, tente novamente')
+    if edtConfSenha.Text = '' then
+      raise Exception.Create('Digite a confirmação da senha');
+    if edtConfSenha.Text <> edtCadSenha.Text  then
+      raise Exception.Create('As senha são diferentes, reveja a senha novamente');
+    lUsuario.Nome  := edtCadUsuario.Text;
+    lUsuario.Senha := edtCadSenha.Text;
+    lUsuario.Email := edtEmail.Text;
+    try
+      lController.Validar(lUsuario);
+      lController.CadastraUsuario(lUsuario);
+    except
+      on E: Exception do
+      begin
+        ShowMessage(E.Message);
+      end;
+    end;
   finally
-    Usuario.Free;
-    Controller.Free;
+    lUsuario.Free;
+    lController.Free;
   end;
 end;
 

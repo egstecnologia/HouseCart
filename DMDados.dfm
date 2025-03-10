@@ -1,4 +1,5 @@
 object DM_Dados: TDM_Dados
+  OnCreate = DataModuleCreate
   Height = 480
   Width = 640
   object FDConnection1: TFDConnection
@@ -8,7 +9,6 @@ object DM_Dados: TDM_Dados
       'User_Name=SYSDBA'
       'Password=masterkey'
       'DriverID=fB')
-    Connected = True
     LoginPrompt = False
     Left = 48
     Top = 88
