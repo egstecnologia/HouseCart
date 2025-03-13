@@ -93,6 +93,7 @@ var
   lQuery: TFDQuery;
 begin
   lQuery := TFDQuery.Create(nil);
+  lQuery.Connection := FConn;
   try
     lQuery.Close;
     lQuery.SQL.Clear;

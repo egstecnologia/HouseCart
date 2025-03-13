@@ -29,7 +29,7 @@ end;
 
 constructor TControllerUsuario.Create;
 begin
-  FDAOUsuario := TDAOUsuario.Create(DM_Dados.FDConnection1);
+  FDAOUsuario := TDAOUsuario.Create(DM_Dados.FDConnection2);
 end;
 
 destructor TControllerUsuario.Destroy;
@@ -45,7 +45,7 @@ begin
   if aUsuario.Senha = '' then
     raise Exception.Create('Digite a sua senha');
   if aUsuario.Email = '' then
-    raise Exception.Create('Digite a sua senha');
+    raise Exception.Create('Digite seu email');
 end;
 
 procedure TControllerUsuario.Validar(aModelUsuario: TUsuario);

@@ -10,6 +10,8 @@ object frmCadastro: TfrmCadastro
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnClose = FormClose
+  OnCreate = FormCreate
   TextHeight = 15
   object pnlContainerLogin: TPanel
     Left = 0
@@ -1709,8 +1711,8 @@ object frmCadastro: TfrmCadastro
           BevelOuter = bvNone
           TabOrder = 0
           object lblCasdastreSe: TLabel
-            Left = 158
-            Top = 0
+            Left = 181
+            Top = 3
             Width = 102
             Height = 28
             Caption = 'Cadastre-se'
@@ -1801,6 +1803,142 @@ object frmCadastro: TfrmCadastro
             Height = 33
             Shape = stRoundRect
           end
+          object imgOlhoFechado: TImage
+            Left = 0
+            Top = 200
+            Width = 24
+            Height = 24
+            AutoSize = True
+            Picture.Data = {
+              0954506E67496D61676589504E470D0A1A0A0000000D49484452000000180000
+              00180806000000E0773DF80000000473424954080808087C0864880000000970
+              485973000000B1000000B101C62D498D0000001974455874536F667477617265
+              007777772E696E6B73636170652E6F72679BEE3C1A0000020C4944415478DAD5
+              D54F48545114C7F12BA8A95990A0A461D2A28DE6C2859256EAC245A2642166D1
+              2A5AE92670E39F5410825A44E4465CE8C63F20E1BF8CD08D7F2B130245280904
+              09150C31DB946994F63DBCF3F03ABD468399C00B9FC5CC9BFB7EEF9E73EF9B10
+              13E411F2BF036A90815BF8168C80ABE8C64B140622C4AB44D7D18929E4E36BA0
+              03BC424EA20DA7F1134B98C6534C62E75F036434A10C6328473D36744E22B210
+              85F7A8C6F38306C4A0192598C719BC327FF6446E5E8C2A24630077B0E62F200D
+              BD88471D9EE09A96CB2B444628EEE23E3EE332DE7905E4E853ACEB934D5BD7EE
+              E90DC6CCDF77D779F4E188FE66D20E908BC35A1269EA8A3531127308479C9F95
+              18EDCD20927425AF2520561BF50597B0EA3329479FFC8AD6BD639F10D9711338
+              21BD7103E634201B9F7C26E462D43887F0194AF70949D26A1CC339B744173084
+              8F5AA2656B42343E600B15FA9D6CE1048F9EC8CD4774157978633759FAF0023F
+              8CB373A6AC6B17D18553FA7901AD68B0561281191C4711C6ED26BB2355572267
+              A1168DC639B9328E221DBFF0169B66F7C44BC86D3CD6D059F7865E074D7AD2A2
+              4D95DE3C448F714EB13DA474F2D6ADB7CA55E0FB3B7FAF0A59F6036914BE1B67
+              5F2F220C6791A221F210B2FF2BCDEE5B78E32001EEF54C2D459A36315483A44C
+              FD5AEB6DDC30CEEE9AB04302FD8F7613EDC6D9CEC5C1089051A4257C14AC803D
+              E3F007FC06A1327D433EF770B30000000049454E44AE426082}
+            Visible = False
+          end
+          object imgConfirmSenha: TImage
+            Left = 323
+            Top = 131
+            Width = 24
+            Height = 24
+            AutoSize = True
+            Picture.Data = {
+              0954506E67496D61676589504E470D0A1A0A0000000D49484452000000180000
+              00180806000000E0773DF80000000473424954080808087C0864880000000970
+              485973000000AE000000AE01F9F7F75D0000001974455874536F667477617265
+              007777772E696E6B73636170652E6F72679BEE3C1A000002014944415478DAED
+              954D28657114C0DFA5B0231FB1A1849A7C2C86C5942959080BB190A9913453C2
+              204D4D4D366AB221259FC92B9224C5CA348D2716468DB2312222CC622C30F99A
+              851271FD4E0EDD2E574F43296EFD3AEF9DCF77CF39FFFF334CD3743DE4633C17
+              B8B7028661042122C10F7E13B7FFDF05489A817803B9106E331FC04F688371D3
+              21D18D05481C83E8806C55EDC02CFC825D888317900ABEB00C35E41AB9B50089
+              03C45191560C431D3E8BD82451BCBA2EA13B45272D2B837208814EF884EDE85A
+              019C031163F00A7EC0476C736A2B42B442B0C6ED4115F641B54720FA20131620
+              07DB9FAB02B6E403F01EFD8906176BB0FC2A4968C05BF087424B11D17F867A58
+              83346C5BA2B4266FD657343548DAF217A475B1A837552FAD59854308437F6669
+              73A5CE4FDE245D0A8C42960EA9D136EC24C43CF4602BB1D97A11EF64D8D8566C
+              B66A6DE9A814F8AEDBF20147F73D15A895E5008FA1839B844428C5B9DBE278A7
+              16A1F741B44305CC48672E872C5B3025496406D0629983B74396EFFD5070991C
+              DB3FEB9A4621BE81B4C5A39BB4E5E59AA6A8FDB535B9D3416BD2579413DB056E
+              7C361C0E5A029FBF403E1C438370E341B30D294F9DE53A388569D7C575207D97
+              13FB12922154433CFA46EBD772395D767A70647D65E5E4CE09B4B96CC3571822
+              C784CBE1B9CB752DFD8FD6566C1077E055DCA3F9C379BA05CE0171B51E7A07A5
+              BC450000000049454E44AE426082}
+            OnClick = imgConfirmSenhaClick
+          end
+          object imgOlhoAberto: TImage
+            Left = 0
+            Top = 230
+            Width = 24
+            Height = 24
+            AutoSize = True
+            Picture.Data = {
+              0954506E67496D61676589504E470D0A1A0A0000000D49484452000000180000
+              00180806000000E0773DF80000000473424954080808087C0864880000000970
+              485973000000AE000000AE01F9F7F75D0000001974455874536F667477617265
+              007777772E696E6B73636170652E6F72679BEE3C1A000002014944415478DAED
+              954D28657114C0DFA5B0231FB1A1849A7C2C86C5942959080BB190A9913453C2
+              204D4D4D366AB221259FC92B9224C5CA348D2716468DB2312222CC622C30F99A
+              851271FD4E0EDD2E574F43296EFD3AEF9DCF77CF39FFFF334CD3743DE4633C17
+              B8B7028661042122C10F7E13B7FFDF05489A817803B9106E331FC04F688371D3
+              21D18D05481C83E8806C55EDC02CFC825D888317900ABEB00C35E41AB9B50089
+              03C45191560C431D3E8BD82451BCBA2EA13B45272D2B837208814EF884EDE85A
+              019C031163F00A7EC0476C736A2B42B442B0C6ED4115F641B54720FA20131620
+              07DB9FAB02B6E403F01EFD8906176BB0FC2A4968C05BF087424B11D17F867A58
+              83346C5BA2B4266FD657343548DAF217A475B1A837552FAD59854308437F6669
+              73A5CE4FDE245D0A8C42960EA9D136EC24C43CF4602BB1D97A11EF64D8D8566C
+              B66A6DE9A814F8AEDBF20147F73D15A895E5008FA1839B844428C5B9DBE278A7
+              16A1F741B44305CC48672E872C5B3025496406D0629983B74396EFFD5070991C
+              DB3FEB9A4621BE81B4C5A39BB4E5E59AA6A8FDB535B9D3416BD2579413DB056E
+              7C361C0E5A029FBF403E1C438370E341B30D294F9DE53A388569D7C575207D97
+              13FB12922154433CFA46EBD772395D767A70647D65E5E4CE09B4B96CC3571822
+              C784CBE1B9CB752DFD8FD6566C1077E055DCA3F9C379BA05CE0171B51E7A07A5
+              BC450000000049454E44AE426082}
+            Visible = False
+          end
+          object imgSenha: TImage
+            Left = 323
+            Top = 85
+            Width = 24
+            Height = 24
+            AutoSize = True
+            Picture.Data = {
+              0954506E67496D61676589504E470D0A1A0A0000000D49484452000000180000
+              00180806000000E0773DF80000000473424954080808087C0864880000000970
+              485973000000AE000000AE01F9F7F75D0000001974455874536F667477617265
+              007777772E696E6B73636170652E6F72679BEE3C1A000002014944415478DAED
+              954D28657114C0DFA5B0231FB1A1849A7C2C86C5942959080BB190A9913453C2
+              204D4D4D366AB221259FC92B9224C5CA348D2716468DB2312222CC622C30F99A
+              851271FD4E0EDD2E574F43296EFD3AEF9DCF77CF39FFFF334CD3743DE4633C17
+              B8B7028661042122C10F7E13B7FFDF05489A817803B9106E331FC04F688371D3
+              21D18D05481C83E8806C55EDC02CFC825D888317900ABEB00C35E41AB9B50089
+              03C45191560C431D3E8BD82451BCBA2EA13B45272D2B837208814EF884EDE85A
+              019C031163F00A7EC0476C736A2B42B442B0C6ED4115F641B54720FA20131620
+              07DB9FAB02B6E403F01EFD8906176BB0FC2A4968C05BF087424B11D17F867A58
+              83346C5BA2B4266FD657343548DAF217A475B1A837552FAD59854308437F6669
+              73A5CE4FDE245D0A8C42960EA9D136EC24C43CF4602BB1D97A11EF64D8D8566C
+              B66A6DE9A814F8AEDBF20147F73D15A895E5008FA1839B844428C5B9DBE278A7
+              16A1F741B44305CC48672E872C5B3025496406D0629983B74396EFFD5070991C
+              DB3FEB9A4621BE81B4C5A39BB4E5E59AA6A8FDB535B9D3416BD2579413DB056E
+              7C361C0E5A029FBF403E1C438370E341B30D294F9DE53A388569D7C575207D97
+              13FB12922154433CFA46EBD772395D767A70647D65E5E4CE09B4B96CC3571822
+              C784CBE1B9CB752DFD8FD6566C1077E055DCA3F9C379BA05CE0171B51E7A07A5
+              BC450000000049454E44AE426082}
+            OnClick = imgSenhaClick
+          end
+          object edtCadSenha: TEdit
+            Left = 121
+            Top = 86
+            Width = 198
+            Height = 23
+            BevelOuter = bvNone
+            BorderStyle = bsNone
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -17
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            PasswordChar = '*'
+            TabOrder = 2
+          end
           object pnlBtnEntrar: TPanel
             Left = 111
             Top = 221
@@ -1819,10 +1957,10 @@ object frmCadastro: TfrmCadastro
               Shape = stRoundRect
             end
             object sbtnEntrar: TSpeedButton
-              Left = 13
-              Top = 0
-              Width = 97
-              Height = 25
+              Left = 0
+              Top = -2
+              Width = 121
+              Height = 33
               Caption = 'Cadastrar'
               Flat = True
               Font.Charset = DEFAULT_CHARSET
@@ -1836,13 +1974,13 @@ object frmCadastro: TfrmCadastro
           end
           object pnlSair: TPanel
             Left = 238
-            Top = 221
+            Top = 219
             Width = 116
             Height = 33
             Align = alCustom
             BevelOuter = bvNone
             ParentBackground = False
-            TabOrder = 1
+            TabOrder = 5
             object shpSair: TShape
               Left = 0
               Top = 1
@@ -1853,10 +1991,10 @@ object frmCadastro: TfrmCadastro
               Shape = stRoundRect
             end
             object btnSair: TSpeedButton
-              Left = 8
-              Top = 3
-              Width = 97
-              Height = 25
+              Left = 0
+              Top = 0
+              Width = 113
+              Height = 30
               Caption = 'Sair'
               Flat = True
               Font.Charset = DEFAULT_CHARSET
@@ -1874,16 +2012,13 @@ object frmCadastro: TfrmCadastro
             Height = 23
             BevelOuter = bvNone
             BorderStyle = bsNone
-            TabOrder = 2
-          end
-          object edtCadSenha: TEdit
-            Left = 121
-            Top = 86
-            Width = 222
-            Height = 23
-            BevelOuter = bvNone
-            BorderStyle = bsNone
-            TabOrder = 3
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -17
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 4
           end
           object edtCadUsuario: TEdit
             Left = 123
@@ -1892,16 +2027,29 @@ object frmCadastro: TfrmCadastro
             Height = 23
             BevelOuter = bvNone
             BorderStyle = bsNone
-            TabOrder = 4
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -17
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 1
           end
           object edtConfSenha: TEdit
             Left = 121
             Top = 130
-            Width = 222
+            Width = 198
             Height = 23
             BevelOuter = bvNone
             BorderStyle = bsNone
-            TabOrder = 5
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -17
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            PasswordChar = '*'
+            TabOrder = 3
           end
         end
       end
