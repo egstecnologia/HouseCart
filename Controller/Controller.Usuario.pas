@@ -14,7 +14,7 @@ type
     public
       constructor Create;
       destructor Destroy; override;
-      function CadastraUsuario (aValue: TUsuario): Integer;
+      procedure CadastraUsuario (aUsuario: TUsuario);
       procedure Validar(aModelUsuario: TUsuario);
   end;
 
@@ -22,9 +22,9 @@ implementation
 
 { TControllerUsuario }
 
-function TControllerUsuario.CadastraUsuario(aValue: TUsuario): Integer;
+procedure TControllerUsuario.CadastraUsuario(aUsuario: TUsuario);
 begin
-  Result := FDAOUsuario.CadastrarUsuario(aValue);
+  FDAOUsuario.CadastrarUsuario(aUsuario);
 end;
 
 constructor TControllerUsuario.Create;

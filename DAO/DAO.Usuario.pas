@@ -17,8 +17,9 @@ type
     constructor Create(aConn: TFDConnection); reintroduce;
     destructor Destroy; override;
     function LogarUsuario(aValue :TUsuario): TUsuario;
-    function CadastrarUsuario(aValue :TUsuario): Integer;
+    procedure CadastrarUsuario(aUsuario: TUsuario);
     function CheckEmail(aEmail: String): Boolean;
+
   end;
 
 implementation
@@ -28,13 +29,12 @@ uses
 
 { TDAOUsuario }
 
-function TDAOUsuario.CadastrarUsuario(aValue: TUsuario): Integer;
+procedure TDAOUsuario.CadastrarUsuario(aUsuario: TUsuario);
 var
   Query: TFDQuery;
 begin
   Query := TFDQuery.Create(nil);
   try
-
     try
       FConn.StartTransaction;
       Query.Close;
@@ -45,11 +45,21 @@ begin
       Query.SQL.Add('(nome, email, senha)');
       Query.SQL.Add('VALUES');
       Query.SQL.Add(' (:nome, :email, :senha)');
-      Query.ParamByName('nome').AsString := aValue.Nome;
-      Query.ParamByName('email').AsString := aValue.Email;
-      Query.ParamByName('senha').AsString := aValue.Senha;
+      Query.ParamByName('nome').AsString := aUsuario.Nome;
+      Query.ParamByName('email').AsString := aUsuario.Email;
+      Query.ParamByName('senha').AsString := aUsuario.Senha;
       Query.ExecSQL;
       FConn.Commit;
+
+      Query.Close;
+      Query.SQL.Clear;
+      Query.SQL.Add('SELECT id_usuario FROM usuario');
+      Query.SQL.Add('WHERE email = :email');
+
+      Query.ParamByName('email').AsString := aUsuario.Email;
+      Query.Open;
+      aUsuario.IDUsuario := Query.FieldByName('id_usuario').AsInteger;
+
     except
       on E: Exception do
       begin
@@ -62,31 +72,6 @@ begin
   end;
 end;
 
-
-//var
-//  Query: TFDQuery;
-//begin
-//  Result := False;
-//  Query := TFDQuery.Create(nil);
-//  try
-//    Query.Connection := DM_Dados.FDConnection1;
-//    Query.SQL.Text := 'INSERT INTO usuario (nome, email, senha) VALUES (:nome, :email, :senha)';
-//
-//    Query.ParamByName('nome').AsString := aValue.Nome;
-//    Query.ParamByName('email').AsString := aValue.Email;
-//    Query.ParamByName('senha').AsString := aValue.Senha;
-//
-//    try
-//      Query.ExecSQL;
-//      Result := True;
-//    except
-//      on E: Exception do
-//        ShowMessage('Erro ao cadastrar usuário: ' + E.Message);
-//    end;
-//  finally
-//    Query.Free;
-//  end;
-//end;
 
 function TDAOUsuario.CheckEmail(aEmail: String): Boolean;
 var

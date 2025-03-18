@@ -56,6 +56,9 @@ var
 
 implementation
 
+uses
+  View.CadResidencia;
+
 {$R *.dfm}
 
 procedure TfrmCadastro.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -115,6 +118,8 @@ begin
         raise Exception.Create('As senha são diferentes, reveja a senha novamente');
       FController.Validar(lUsuario);
       FController.CadastraUsuario(lUsuario);
+
+      TfrmCadResidencia.Create(lUsuario);
     except
       on E: Exception do
       begin

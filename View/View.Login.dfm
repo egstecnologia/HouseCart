@@ -1703,9 +1703,9 @@ object frmLogin: TfrmLogin
         TabOrder = 1
         object pnlUserSenha: TPanel
           Left = 32
-          Top = 49
+          Top = 48
           Width = 353
-          Height = 257
+          Height = 258
           BevelOuter = bvNone
           TabOrder = 0
           object lblLogin: TLabel
@@ -1723,7 +1723,7 @@ object frmLogin: TfrmLogin
           end
           object lblSenha: TLabel
             Left = 21
-            Top = 122
+            Top = 126
             Width = 62
             Height = 28
             Caption = 'Senha: '
@@ -1871,6 +1871,30 @@ object frmLogin: TfrmLogin
               C784CBE1B9CB752DFD8FD6566C1077E055DCA3F9C379BA05CE0171B51E7A07A5
               BC450000000049454E44AE426082}
             Visible = False
+          end
+          object Label2: TLabel
+            Left = 21
+            Top = 0
+            Width = 72
+            Height = 15
+            Caption = 'FornPergunta'
+            OnClick = Label2Click
+          end
+          object Label3: TLabel
+            Left = 24
+            Top = 22
+            Width = 51
+            Height = 15
+            Caption = 'Descri'#231#227'o'
+            OnClick = Label3Click
+          end
+          object Label4: TLabel
+            Left = 24
+            Top = 43
+            Width = 40
+            Height = 15
+            Caption = 'Vinculo'
+            OnClick = Label4Click
           end
           object pnlBtnEntrar: TPanel
             Left = 89

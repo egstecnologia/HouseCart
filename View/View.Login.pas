@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls,
   Vcl.Buttons, Vcl.Imaging.jpeg, Vcl.Imaging.pngimage, Controller.Usuario,
-  Model.Usuario, System.StrUtils;
+  Model.Usuario, System.StrUtils, View.PerguntaResidencia, View.CadResidencia,
+  View.VinculoResidencia;
 
 type
   TfrmLogin = class(TForm)
@@ -36,9 +37,15 @@ type
     imgSenha: TImage;
     imgOlhoFechado: TImage;
     imgOlhoAberto: TImage;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
     procedure lblClickAquiClick(Sender: TObject);
     procedure imgSenhaClick(Sender: TObject);
     procedure sbtnEntrarClick(Sender: TObject);
+    procedure Label2Click(Sender: TObject);
+    procedure Label3Click(Sender: TObject);
+    procedure Label4Click(Sender: TObject);
   private
     FController : TControllerUsuario;
   public
@@ -67,6 +74,36 @@ if edtSenha.PasswordChar = #0 then
     edtSenha.PasswordChar := #0;
   end;
 
+end;
+
+procedure TfrmLogin.Label2Click(Sender: TObject);
+begin
+  frmPerguntaResidencia := TfrmPerguntaResidencia.Create(nil);
+  try
+    frmPerguntaResidencia.ShowModal;
+  finally
+    FreeAndNil(frmPerguntaResidencia);
+  end;
+end;
+
+procedure TfrmLogin.Label3Click(Sender: TObject);
+begin
+  frmCadResidencia := TfrmCadResidencia.Create(nil);
+  try
+    frmCadResidencia.ShowModal;
+  finally
+    FreeAndNil(frmCadResidencia);
+  end;
+end;
+
+procedure TfrmLogin.Label4Click(Sender: TObject);
+begin
+  frmVinculoResidencia := TfrmVinculoResidencia.Create(nil);
+  try
+    frmVinculoResidencia.ShowModal;
+  finally
+    FreeAndNil(frmVinculoResidencia);
+  end;
 end;
 
 procedure TfrmLogin.lblClickAquiClick(Sender: TObject);
@@ -100,7 +137,6 @@ begin
     end;
   finally
     lUsuario.Free;
-
   end;
 end;
 

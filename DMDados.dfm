@@ -29,4 +29,9 @@ object DM_Dados: TDM_Dados
     Left = 40
     Top = 168
   end
+  object FDQuery1: TFDQuery
+    Connection = FDConnection1
+    Left = 168
+    Top = 168
+  end
 end
