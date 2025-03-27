@@ -120,10 +120,6 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="View.PerguntaResidencia.pas">
-            <Form>frmPerguntaResidencia</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="View.CadResidencia.pas">
             <Form>frmCadResidencia</Form>
             <FormType>dfm</FormType>
@@ -135,6 +131,14 @@
         <DCCReference Include="..\Model\Model.Casa.pas"/>
         <DCCReference Include="..\Controller\Controller.Casa.pas"/>
         <DCCReference Include="..\DAO\DAO.Casa.pas"/>
+        <DCCReference Include="View.Principal.pas">
+            <Form>Form1</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="View.DesvincularResidencia.pas">
+            <Form>Form2</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

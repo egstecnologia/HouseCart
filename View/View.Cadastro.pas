@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Buttons, Vcl.ExtCtrls, Vcl.StdCtrls,
-  Vcl.Imaging.pngimage, Controller.Usuario, Model.Usuario, DMDados;
+  Vcl.Imaging.pngimage, Controller.Usuario, Model.Usuario, DMDados,
+  View.VinculoResidencia;
 
 type
   TfrmCadastro = class(TForm)
@@ -118,8 +119,11 @@ begin
         raise Exception.Create('As senha são diferentes, reveja a senha novamente');
       FController.Validar(lUsuario);
       FController.CadastraUsuario(lUsuario);
-
-      TfrmCadResidencia.Create(lUsuario);
+      if MessageDlg('Deseja cadastrar uma nova residência?', TMsgDlgType.mtConfirmation,
+        mbYesNo, 0) = mrOk then
+        TfrmCadResidencia.Create(lUsuario)
+      else
+        TfrmVinculoResidencia.Create(lUsuario);
     except
       on E: Exception do
       begin

@@ -128,7 +128,7 @@ begin
     try
      if not ContainsText(edtLogin.Text, '@') then
         raise Exception.Create('Formato de email invalido');
-      FController.CadastraUsuario(lUsuario);
+      FController.LogarUsuario(lUsuario);
     except
       on E: Exception do
       begin

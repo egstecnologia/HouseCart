@@ -2,13 +2,14 @@ unit DAO.Casa;
 
 interface
 uses
-  System.SysUtils, 
+  System.SysUtils,
   Model.Casa,
   DB,
   DMDados,
   Model.Usuario,
-  FireDAC.Comp.Client;
-  
+  FireDAC.Comp.Client,
+  System.Generics.Collections;
+
 type
   TDAOCasa = class
     private
@@ -17,7 +18,11 @@ type
       constructor Create (aConn : TFDConnection); reintroduce;
       destructor  Destroy; override;
       procedure Cadastrar(aModelCasa: TCasa; aUsuario: TUsuario);
-      function ExisteCasa(aIdUsuario: Integer; aDescricaoCasa: String): Boolean;
+      function ExisteCasa(aIdUsuario: Integer; aDescricaoCasa: String): Boolean; overload;
+      function ExisteCasa(aIdUsuario, aIdCasa: Integer): Boolean; overload;
+      procedure Vincular(const aIdUsuario: Integer; const aShortId: String);
+      function GetId(const aShortId: String) : Integer;
+      function GetCasasVinculadas(const aIdUsuario: Integer): TList<TCasa>;
   end;
 
 
@@ -94,6 +99,33 @@ begin
   inherited;
 end;
 
+function TDAOCasa.ExisteCasa(aIdUsuario, aIdCasa: Integer): Boolean;
+var
+  lQuery : TFDQuery;
+begin
+  lQuery := TFDQuery.Create(nil);
+  try
+    try
+      lQuery.Connection := FCOnn;
+      lQuery.Close;
+      lQuery.SQL.Clear;
+      lQuery.SQL.Add('SELECT id_usuario');
+      lQuery.SQL.Add('FROM usuarios_casa');
+      lQuery.SQL.Add('WHERE id_usuario = :id_usuario AND id_casa = :id_casa');
+
+      lQuery.ParamByName('id_usuario').AsInteger := aIdUsuario;
+      lQuery.ParamByName('id_casa').AsInteger := aIdCasa;
+      lQuery.Open;
+
+      Result := lQuery.RecordCount > 0;
+    except on E: Exception do
+      raise
+    end;
+  finally
+   lQuery.Free;
+  end;
+end;
+
 function TDAOCasa.ExisteCasa(aIdUsuario: Integer; aDescricaoCasa: String): Boolean;
 var
   lQuery : TFDQuery;
@@ -119,6 +151,96 @@ begin
     end;
   finally
    lQuery.Free;
+  end;
+end;
+
+procedure TDAOCasa.Vincular(const aIdUsuario: Integer; const aShortId: String);
+var
+  lQuery: TFDQuery;
+  lIdCasa: Integer;
+begin
+  lQuery := TFDQuery.Create(nil);
+  try
+    try
+      lQuery.Connection := FCOnn;
+      lQuery.Close;
+      lQuery.SQL.Clear;
+      lIdCasa := GetId(aShortId);
+      FCOnn.StartTransaction;
+      lQuery.SQL.Add('INSERT INTO usuarios_casa');
+      lQuery.SQL.Add('(id_casa, id_usuario)');
+      lQuery.SQL.Add('  VALUES');
+      lQuery.SQL.Add('(:id_casa, :id_usuario)');
+      lQuery.ParamByName('id_casa').AsInteger := lIdCasa;
+      lQuery.ParamByName('id_usuario').AsInteger := aIdUsuario;
+      lQuery.ExecSQL;
+      FCOnn.Commit;
+
+    except on E: Exception do
+      begin
+        FCOnn.Rollback;
+        raise
+      end;
+    end;
+
+  finally
+    lQuery.Free;
+  end;
+
+end;
+
+function TDAOCasa.GetCasasVinculadas(const aIdUsuario: Integer): TList<TCasa>;
+var
+  lQuery: TFDQuery;
+  lItem: TCasa;
+begin
+  lQuery:= TFDQuery.Create(nil);
+  try
+    try
+      lQuery.Connection := FCOnn;
+      lQuery.Close;
+      lQuery.SQL.Clear;
+      lQuery.SQL.Add('SELECT uc.id_casa, c.descricao, c.short_id');
+      lQuery.SQL.Add('FROM usuarios_casa uc');
+      lQuery.SQL.Add('INNER JOIN casa c on c.id_casa = uc.id_casa');
+      lQuery.SQL.Add('WHERE uc.id_usuario = :idUsuario');
+      lQuery.ParamByName('idUsuario').AsInteger := aIdUsuario;
+      lQuery.Open;
+      Result := TList<TCasa>.create;
+      while lQuery.Eof do
+      begin
+        lItem := TCasa.Create;
+        lItem.ID_CASA := lQuery.FieldByName('id_casa').AsInteger;
+        lItem.Descricao := lQuery.FieldByName('descricao').AsString;
+        lItem.ShortId := lQuery.FieldByName('short_id').AsString;
+        Result.Add(lItem);
+        lQuery.Next;
+      end;
+      Result.TrimExcess;
+    except on E: Exception do
+      raise
+    end;
+  finally
+    lQuery.Free;
+  end;
+end;
+
+function TDAOCasa.GetId (const aShortId: String) : Integer;
+var
+  lQuery: TFDQuery;
+begin
+  lQuery := TFDQuery.Create(nil);
+  try
+    lQuery.Connection := FCOnn;
+    lQuery.Close;
+    lQuery.SQL.Clear;
+    lQuery.SQL.Add('SELECT id_casa FROM casa');
+    lQuery.SQL.Add('WHERE short_id = :short_id');
+    lQuery.ParamByName('short_id').AsString := aShortId;
+    lQuery.Open;
+    Result := lQuery.FieldByName('id_casa').AsInteger;
+  finally
+    lQuery.Free;
   end;
 end;
 

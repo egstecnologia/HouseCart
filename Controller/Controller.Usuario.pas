@@ -16,6 +16,7 @@ type
       destructor Destroy; override;
       procedure CadastraUsuario (aUsuario: TUsuario);
       procedure Validar(aModelUsuario: TUsuario);
+      procedure LogarUsuario(aUsuario: TUsuario);
   end;
 
 implementation
@@ -46,6 +47,11 @@ begin
     raise Exception.Create('Digite a sua senha');
   if aUsuario.Email = '' then
     raise Exception.Create('Digite seu email');
+end;
+
+procedure TControllerUsuario.LogarUsuario(aUsuario: TUsuario);
+begin
+  FDAOUsuario.LogarUsuario(aUsuario);
 end;
 
 procedure TControllerUsuario.Validar(aModelUsuario: TUsuario);

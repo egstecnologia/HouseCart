@@ -1,7 +1,8 @@
 unit Model.Casa;
 
 interface
-
+uses
+  System.Generics.Collections, System.Classes;
 type
   TCasa = class
     private
@@ -13,6 +14,12 @@ type
       property Descricao: String read FDescricao write FDescricao;
       property ShortId : String read FShortId write FShortId;
   end;
+  TListCasa = TList<TCasa>
+    private
+
+    public
+  end;
+
 
 implementation
 

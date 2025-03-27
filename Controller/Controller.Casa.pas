@@ -2,7 +2,8 @@ unit Controller.Casa;
 
 interface
 uses
-  System.SysUtils, StrUtils, DMDados, DAO.Casa, Model.Casa, Model.Usuario;
+  System.SysUtils, System.Generics.Collections, StrUtils,
+  DMDados, DAO.Casa, Model.Casa, Model.Usuario;
 
 type
   TControllerCasa = class
@@ -14,6 +15,8 @@ type
       procedure Cadastrar(aModelCasa: TCasa; aUsuario: TUsuario);
       function GetNewId: String;
       function ExisteCasa(aIdUsuario: Integer; aDescricaoCasa: String): Boolean;
+      procedure Vincular(aIdUsuario: Integer; aShortId: String);
+      function GetCasasVinculadas(aIdUsuario: Integer): TList<TCasa>;
   end;
 
 implementation
@@ -41,6 +44,11 @@ begin
   inherited;
 end;
 
+function TControllerCasa.GetCasasVinculadas(aIdUsuario: Integer): TList<TCasa>;
+begin
+  Result := FDAOCasa.GetCasasVinculadas(aIdUsuario);
+end;
+
 function TControllerCasa.GetNewId: String;
 var
   lID: String;
@@ -52,6 +60,17 @@ begin
   Result := EmptyStr;
   for I := 1 to 4 do
     Result := Result + lID[Random(Length(lID)) +1];
+end;
+
+procedure TControllerCasa.Vincular(aIdUsuario: Integer; aShortId: String);
+begin
+  try
+    if FDAOCasa.ExisteCasa(aIdUsuario, FDAOCasa.GetId(aShortId)) then
+      raise Exception.Create('Essa casa ja está vicunlada a este usuario');
+    FDAOCasa.Vincular(aIdUsuario, aShortId);
+  except on E: Exception do
+    raise
+  end;
 end;
 
 function TControllerCasa.ExisteCasa(aIdUsuario: Integer;

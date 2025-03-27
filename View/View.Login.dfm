@@ -1688,8 +1688,8 @@ object frmLogin: TfrmLogin
             690F0D6783699282208882F80F1883232708988A250000000049454E44AE4260
             82}
           Proportional = True
-          ExplicitLeft = -4
-          ExplicitTop = 5
+          ExplicitLeft = 0
+          ExplicitTop = -3
         end
       end
       object pnlLoginSenha: TPanel

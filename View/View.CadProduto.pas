@@ -18,6 +18,21 @@ type
     edtUnd: TEdit;
     lblUnd: TLabel;
     shpUnd: TShape;
+    edtUltValorCompra: TEdit;
+    lblUltValorCompra: TLabel;
+    shpUltValorCompra: TShape;
+    lblValorAtual: TLabel;
+    shpValorAtual: TShape;
+    edtValorAtual: TEdit;
+    edtQtde: TEdit;
+    lblQtde: TLabel;
+    shpQtde: TShape;
+    edtValidade: TEdit;
+    lblValidade: TLabel;
+    shpValidade: TShape;
+    edtEstMinimo: TEdit;
+    lblEstMinimo: TLabel;
+    shpEstMinimo: TShape;
   private
     { Private declarations }
   public

@@ -16,7 +16,7 @@ type
   public
     constructor Create(aConn: TFDConnection); reintroduce;
     destructor Destroy; override;
-    function LogarUsuario(aValue :TUsuario): TUsuario;
+    function LogarUsuario(aUsuario: TUsuario): TUsuario;
     procedure CadastrarUsuario(aUsuario: TUsuario);
     function CheckEmail(aEmail: String): Boolean;
 
@@ -108,7 +108,7 @@ begin
   inherited;
 end;
 
-function TDAOUsuario.LogarUsuario(aValue: TUsuario): TUsuario;
+function TDAOUsuario.LogarUsuario(aUsuario: TUsuario): TUsuario;
 //var
 //  Usuario: TUsuario;
 //  Query : TFDQuery;

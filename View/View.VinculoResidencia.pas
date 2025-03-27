@@ -4,7 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
+  Controller.Casa, Model.Usuario;
 
 type
   TfrmVinculoResidencia = class(TForm)
@@ -17,11 +18,14 @@ type
     pnlBtnGravar: TPanel;
     shpBtnGravar: TShape;
     btnGravar: TSpeedButton;
-    edtVinculoResidencia: TEdit;
+    edtShortId: TEdit;
+    procedure btnGravarClick(Sender: TObject);
   private
-    { Private declarations }
+    FControllerCasa : TControllerCasa;
+    FUsuario : TUsuario;
   public
-    { Public declarations }
+    constructor Create(aUsuario: TUsuario); reintroduce;
+    destructor Destroy; override;
   end;
 
 var
@@ -30,5 +34,32 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmVinculoResidencia.btnGravarClick(Sender: TObject);
+begin
+  try
+    if edtShortId.Text = '' then
+      raise Exception.Create('Digite o ID da casa');
+    FControllerCasa.Vincular(FUsuario.IDUsuario, edtShortId.Text);
+  except on E: Exception do
+    ShowMessage(e.Message);
+  end;
+end;
+
+constructor TfrmVinculoResidencia.Create(aUsuario: TUsuario);
+begin
+  inherited Create(nil);
+  FUsuario := aUsuario;
+  FControllerCasa := TControllerCasa.Create;
+  frmVinculoResidencia := Self;
+  frmVinculoResidencia.ShowModal;
+end;
+
+destructor TfrmVinculoResidencia.Destroy;
+begin
+  FUsuario.Free;
+  FControllerCasa.Free;
+  inherited
+end;
 
 end.

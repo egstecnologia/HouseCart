@@ -20,8 +20,6 @@ object frmVinculoResidencia: TfrmVinculoResidencia
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
-    ExplicitWidth = 304
-    ExplicitHeight = 148
     object lblVinculoResidencia: TLabel
       Left = 154
       Top = 91
@@ -126,13 +124,14 @@ object frmVinculoResidencia: TfrmVinculoResidencia
         Font.Style = []
         ParentFont = False
         ParentBiDiMode = False
+        OnClick = btnGravarClick
         ExplicitLeft = -21
         ExplicitTop = -5
         ExplicitWidth = 99
         ExplicitHeight = 27
       end
     end
-    object edtVinculoResidencia: TEdit
+    object edtShortId: TEdit
       Left = 160
       Top = 121
       Width = 236
