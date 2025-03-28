@@ -120,15 +120,18 @@ procedure TfrmLogin.sbtnEntrarClick(Sender: TObject);
 var
   lUsuario: TUsuario;
 begin
-
   lUsuario := TUsuario.Create;
   try
     lUsuario.Email := edtLogin.Text;
     lUsuario.Senha := edtSenha.Text;
     try
      if not ContainsText(edtLogin.Text, '@') then
-        raise Exception.Create('Formato de email invalido');
-      FController.LogarUsuario(lUsuario);
+      raise Exception.Create('Formato de email invalido');
+     if not (FController.ExistsEmail(lUsuario.Email)) then
+      raise Exception.Create('Usuario não foi cadastrado');
+     if not (FController.CheckSenha(lUsuario.Email, lUsuario.Senha))  then
+      raise Exception.Create('Senha invalida');
+      lUsuario.IDUsuario := FController.GetID(lUsuario.Email);
     except
       on E: Exception do
       begin

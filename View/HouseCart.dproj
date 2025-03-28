@@ -132,11 +132,11 @@
         <DCCReference Include="..\Controller\Controller.Casa.pas"/>
         <DCCReference Include="..\DAO\DAO.Casa.pas"/>
         <DCCReference Include="View.Principal.pas">
-            <Form>Form1</Form>
+            <Form>frmPrincipal</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="View.DesvincularResidencia.pas">
-            <Form>Form2</Form>
+            <Form>frmDesvincularCasas</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">

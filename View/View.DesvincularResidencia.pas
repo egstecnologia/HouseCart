@@ -7,25 +7,25 @@ uses
   System.Classes, System.Generics.Collections, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons,
   Vcl.ComCtrls,
-  Model.Casa, Controller.Casa;
+  Model.Casa, Controller.Casa, Model.Usuario;
 
 type
-  TForm2 = class(TForm)
+  TfrmDesvincularCasas = class(TForm)
     pnlContainer: TPanel;
     lvResidencias: TListView;
     pnlLvResisdencias: TPanel;
     pnlBotoes: TPanel;
-    procedure FormCreate(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     FController: TControllerCasa;
+    FUsuario: TUsuario;
     procedure PopulateLvCasas;
   public
-    constructor Create(aIdusuario:
+    constructor Create(aUsuario: TUsuario); reintroduce;
+    destructor Destroy; override;
   end;
 
 var
-  Form2: TForm2;
+  frmDesvincularCasas: TfrmDesvincularCasas;
 
 implementation
 
@@ -34,23 +34,44 @@ implementation
 
 { TForm2 }
 
-procedure TForm2.FormClose(Sender: TObject; var Action: TCloseAction);
+constructor TfrmDesvincularCasas.Create(aUsuario: TUsuario);
 begin
-
+  inherited Create(nil);
+  FUsuario := aUsuario;
+  FController := TControllerCasa.Create;
+  frmDesvincularCasas := Self;
+  frmDesvincularCasas.ShowModal;
 end;
 
-procedure TForm2.FormCreate(Sender: TObject);
+destructor TfrmDesvincularCasas.Destroy;
 begin
-
+  FUsuario.Free;
+  FController.Free;
+  inherited;
 end;
 
-procedure TForm2.PopulateLvCasas;
+procedure TfrmDesvincularCasas.PopulateLvCasas;
 var
   ListCasas: TList<TCasa>;
+  lItem: TListItem;
+  lCasa: TCasa;
 begin
   try
-
-  except on E: Exception do
+    try
+      Listcasas := FController.GetCasasVinculadas(FUsuario.IDUsuario);
+      for lCasa in ListCasas do
+      begin
+        lItem := lvResidencias.Items.Add;
+        lItem.Caption  := IntToStr(lCasa.ID_CASA);
+        lItem.SubItems[0] := lCasa.Descricao;
+        lItem.SubItems[1] := lCasa.ShortId;
+      end;
+    except on E: Exception do
+      raise Exception.Create(e.Message);
+    end;
+  finally
+    ListCasas.Free;
+    lCasa.Free;
   end;
 end;
 

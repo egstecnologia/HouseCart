@@ -19,6 +19,8 @@ type
     function LogarUsuario(aUsuario: TUsuario): TUsuario;
     procedure CadastrarUsuario(aUsuario: TUsuario);
     function CheckEmail(aEmail: String): Boolean;
+    function CheckSenha(aEmail, aSenha: String): Boolean;
+    function GetId(aEmail: String): Integer;
 
   end;
 
@@ -96,6 +98,30 @@ begin
   end;
 end;
 
+function TDAOUsuario.CheckSenha(aEmail, aSenha: String): Boolean;
+var
+  lQuery: TFDQuery;
+begin
+  try
+    lQuery := TFDQuery.Create(nil);
+    lQuery.Connection := FConn;
+    lQuery.Close;
+    lQuery.SQL.Clear;
+    lQuery.SQL.Add('SELECT');
+    lQuery.SQL.Add('  senha');
+    lQuery.SQL.Add('FROM');
+    lQuery.SQL.Add('  usuario');
+    lQuery.SQL.Add('WHERE');
+    lQuery.SQL.Add('  email = :email');
+    lQuery.ParamByName('email').AsString := aEmail;
+    lQuery.Open;
+    Result := lQuery.FieldByName('senha').AsString = aSenha;
+  finally
+    lQuery.Free;
+  end;
+
+end;
+
 constructor TDAOUsuario.Create(aConn: TFDConnection);
 begin
   inherited Create;
@@ -108,33 +134,51 @@ begin
   inherited;
 end;
 
-function TDAOUsuario.LogarUsuario(aUsuario: TUsuario): TUsuario;
-//var
-//  Usuario: TUsuario;
-//  Query : TFDQuery;
+function TDAOUsuario.GetId(aEmail: String): Integer;
+var
+  lQuery: TFDQuery;
 begin
-//  Query := TFDQuery.Create(nil);
-//  Usuario := TUsuario.Create;
-//  try
-//    with DM_Dados.FDConnection1 do
-//    begin
-//      Query.SQL.Text := 'SELETC * FROM usuario where email = email';
-//      Query.ParamByName('email').AsString := aValue.Email;
-//      open;
-//      if not IsEmpty then
-//        begin
-//        //Ver com Erick se há a necessidade de trazer o ID_USUARIO do banco
-//        //mesmo que não venha ser exibido
-//         Usuario.Email := Query.FieldByName('email').AsString;
-//         Usuario.Senha := Query.FieldByName('senha').AsString;
-//        end;
-//    end;
-//    Result := Usuario;
-//  except
-//    FreeAndNil(Usuario);
-//    ShowMessage('Verifique se email e senha estão corretos!');
-//    raise
-//  end;
+  try
+    lQuery := TFDQuery.Create(nil);
+    lQuery.Connection := FConn;
+    lQuery.Close;
+    lQuery.SQL.Clear;
+    lQuery.SQL.Add('SELECT');
+    lQuery.SQL.Add('  id_usuario');
+    lQuery.SQL.Add('FROM');
+    lQuery.SQL.Add('  usuario');
+    lQuery.SQL.Add('WHERE');
+    lQuery.SQL.Add('email = :email');
+    lQuery.ParamByName('email').AsString := aEmail;
+    lQuery.Open;
+    Result := lQuery.FieldByName('id_usuario').AsInteger;
+
+  finally
+    lQuery.Free;
+  end;
+
 end;
 
+function TDAOUsuario.LogarUsuario(aUsuario: TUsuario): TUsuario;
+var
+  lQuery: TFDQuery;
+begin
+  try
+    lQuery := TFDQuery.Create(nil);
+    lQuery.Connection := FConn;
+    lQuery.Close;
+    lQuery.SQL.Clear;
+    lQuery.SQL.Add('SELECT');
+    lQuery.SQL.Add('  email, senha');
+    lQuery.SQL.Add('FROM');
+    lQuery.SQL.Add('  usuario');
+    lQuery.SQL.Add('WHERE');
+    lQuery.SQL.Add('  email = :email, senha = :=senha');
+    lQuery.ParamByName('email').AsString := aUsuario.Email;
+    lQuery.ParamByName('senha').AsString := aUsuario.Senha;
+
+  finally
+    lQuery.Free;
+  end;
+end;
 end.

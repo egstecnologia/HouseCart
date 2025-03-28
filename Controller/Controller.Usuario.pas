@@ -9,7 +9,6 @@ type
   TControllerUsuario = class
     private
       FDAOUsuario: TDAOUsuario;
-      procedure ValidarEmail(aEmail: String);
       procedure IsEnpty(aUsuario: TUsuario);
     public
       constructor Create;
@@ -17,6 +16,10 @@ type
       procedure CadastraUsuario (aUsuario: TUsuario);
       procedure Validar(aModelUsuario: TUsuario);
       procedure LogarUsuario(aUsuario: TUsuario);
+      procedure ValidarEmail(aEmail: String);
+      function ExistsEmail(aEmail: string): Boolean;
+      function CheckSenha(aEmail, aSenha: String): Boolean;
+      function GetID(aEmail: String): Integer;
   end;
 
 implementation
@@ -26,6 +29,11 @@ implementation
 procedure TControllerUsuario.CadastraUsuario(aUsuario: TUsuario);
 begin
   FDAOUsuario.CadastrarUsuario(aUsuario);
+end;
+
+function TControllerUsuario.CheckSenha(aEmail, aSenha: String): Boolean;
+begin
+  Result := FDAOUsuario.CheckSenha(aEmail, aSenha);
 end;
 
 constructor TControllerUsuario.Create;
@@ -58,15 +66,21 @@ procedure TControllerUsuario.Validar(aModelUsuario: TUsuario);
 begin
   ValidarEmail(aModelUsuario.Email);
   IsEnpty(aModelUsuario);
-
 end;
 
 procedure TControllerUsuario.ValidarEmail(aEmail: String);
 begin
-  if FDAOUsuario.CheckEmail(aEmail) then
-    raise Exception.Create('Email já existe');
   if not aEmail.Contains('@') then
     raise Exception.Create('Formato de email invalido');
+end;
+
+function TControllerUsuario.ExistsEmail(aEmail: string): Boolean;
+begin
+  Result := FDAOUsuario.CheckEmail(aEmail);
+end;
+function TControllerUsuario.GetID(aEmail: String): Integer;
+begin
+  Result := FDAOUsuario.GetId(aEmail);
 end;
 
 end.

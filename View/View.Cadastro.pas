@@ -118,6 +118,9 @@ begin
       if edtConfSenha.Text <> edtCadSenha.Text  then
         raise Exception.Create('As senha são diferentes, reveja a senha novamente');
       FController.Validar(lUsuario);
+
+      if FController.ExistsEmail(lUsuario.Email) then
+        raise Exception.Create('Email já existe');
       FController.CadastraUsuario(lUsuario);
       if MessageDlg('Deseja cadastrar uma nova residência?', TMsgDlgType.mtConfirmation,
         mbYesNo, 0) = mrOk then

@@ -1701,6 +1701,8 @@ object frmLogin: TfrmLogin
         Color = clWhite
         ParentBackground = False
         TabOrder = 1
+        ExplicitLeft = 278
+        ExplicitTop = -4
         object pnlUserSenha: TPanel
           Left = 32
           Top = 48
@@ -1735,11 +1737,11 @@ object frmLogin: TfrmLogin
             ParentFont = False
           end
           object lblUsuario: TLabel
-            Left = 12
+            Left = 24
             Top = 64
-            Width = 71
+            Width = 51
             Height = 28
-            Caption = 'Usuario:'
+            Caption = 'Email:'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -20

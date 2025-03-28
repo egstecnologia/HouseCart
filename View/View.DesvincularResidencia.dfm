@@ -1,7 +1,7 @@
-object Form2: TForm2
+object frmDesvincularCasas: TfrmDesvincularCasas
   Left = 0
   Top = 0
-  Caption = 'Form2'
+  Caption = 'frmDesvincularCasas'
   ClientHeight = 661
   ClientWidth = 911
   Color = clBtnFace
@@ -10,8 +10,6 @@ object Form2: TForm2
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
-  OnClose = FormClose
-  OnCreate = FormCreate
   TextHeight = 15
   object pnlContainer: TPanel
     Left = 0
@@ -20,9 +18,6 @@ object Form2: TForm2
     Height = 661
     Align = alClient
     TabOrder = 0
-    ExplicitTop = -8
-    ExplicitWidth = 822
-    ExplicitHeight = 441
     object pnlLvResisdencias: TPanel
       Left = 1
       Top = 1
@@ -30,9 +25,6 @@ object Form2: TForm2
       Height = 583
       Align = alClient
       TabOrder = 0
-      ExplicitLeft = 2
-      ExplicitTop = 0
-      ExplicitHeight = 432
       object lvResidencias: TListView
         Left = 1
         Top = 1
@@ -50,10 +42,7 @@ object Form2: TForm2
             Caption = 'Short ID'
           end>
         TabOrder = 0
-        ExplicitLeft = 224
-        ExplicitTop = 200
-        ExplicitWidth = 250
-        ExplicitHeight = 150
+        ViewStyle = vsReport
       end
     end
     object pnlBotoes: TPanel
