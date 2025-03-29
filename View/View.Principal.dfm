@@ -10,6 +10,7 @@ object frmPrincipal: TfrmPrincipal
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnClose = FormClose
   TextHeight = 15
   object pnlContainer: TPanel
     Left = 0
@@ -19,8 +20,6 @@ object frmPrincipal: TfrmPrincipal
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitWidth = 1100
-    ExplicitHeight = 794
     object pnlGroupMenu: TPanel
       Left = 0
       Top = 0
@@ -32,7 +31,6 @@ object frmPrincipal: TfrmPrincipal
       Padding.Right = 3
       Padding.Bottom = 3
       TabOrder = 0
-      ExplicitHeight = 794
       object pnlBtnCasas: TPanel
         Left = 4
         Top = 45
@@ -45,9 +43,6 @@ object frmPrincipal: TfrmPrincipal
         Padding.Right = 3
         Padding.Bottom = 3
         TabOrder = 0
-        ExplicitLeft = -24
-        ExplicitTop = 376
-        ExplicitWidth = 185
         object shpBtnCasa: TShape
           Left = 3
           Top = 3
@@ -86,9 +81,6 @@ object frmPrincipal: TfrmPrincipal
         Padding.Right = 3
         Padding.Bottom = 3
         TabOrder = 1
-        ExplicitLeft = -4
-        ExplicitTop = -4
-        ExplicitWidth = 127
       end
     end
     object pnlForm: TPanel
@@ -98,8 +90,6 @@ object frmPrincipal: TfrmPrincipal
       Height = 653
       Align = alClient
       TabOrder = 1
-      ExplicitWidth = 971
-      ExplicitHeight = 794
     end
   end
 end

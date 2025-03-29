@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls,
   Vcl.Buttons, Vcl.Imaging.jpeg, Vcl.Imaging.pngimage, Controller.Usuario,
   Model.Usuario, System.StrUtils, View.PerguntaResidencia, View.CadResidencia,
-  View.VinculoResidencia;
+  View.VinculoResidencia, View.Principal;
 
 type
   TfrmLogin = class(TForm)
@@ -46,6 +46,8 @@ type
     procedure Label2Click(Sender: TObject);
     procedure Label3Click(Sender: TObject);
     procedure Label4Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     FController : TControllerUsuario;
   public
@@ -60,6 +62,16 @@ uses
   View.Cadastro;
 
 {$R *.dfm}
+
+procedure TfrmLogin.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  FController.Free;
+end;
+
+procedure TfrmLogin.FormCreate(Sender: TObject);
+begin
+  FController := TControllerUsuario.Create;
+end;
 
 procedure TfrmLogin.imgSenhaClick(Sender: TObject);
 begin
@@ -132,6 +144,8 @@ begin
      if not (FController.CheckSenha(lUsuario.Email, lUsuario.Senha))  then
       raise Exception.Create('Senha invalida');
       lUsuario.IDUsuario := FController.GetID(lUsuario.Email);
+
+      TfrmPrincipal.Create(lUsuario);
     except
       on E: Exception do
       begin

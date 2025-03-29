@@ -10,6 +10,8 @@ object frmLogin: TfrmLogin
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnClose = FormClose
+  OnCreate = FormCreate
   TextHeight = 15
   object pnlContainerLogin: TPanel
     Left = 0
@@ -1701,8 +1703,6 @@ object frmLogin: TfrmLogin
         Color = clWhite
         ParentBackground = False
         TabOrder = 1
-        ExplicitLeft = 278
-        ExplicitTop = -4
         object pnlUserSenha: TPanel
           Left = 32
           Top = 48

@@ -15,7 +15,6 @@ type
       destructor Destroy; override;
       procedure CadastraUsuario (aUsuario: TUsuario);
       procedure Validar(aModelUsuario: TUsuario);
-      procedure LogarUsuario(aUsuario: TUsuario);
       procedure ValidarEmail(aEmail: String);
       function ExistsEmail(aEmail: string): Boolean;
       function CheckSenha(aEmail, aSenha: String): Boolean;
@@ -38,7 +37,7 @@ end;
 
 constructor TControllerUsuario.Create;
 begin
-  FDAOUsuario := TDAOUsuario.Create(DM_Dados.FDConnection2);
+  FDAOUsuario := TDAOUsuario.Create(DM_Dados.FDConnection1);
 end;
 
 destructor TControllerUsuario.Destroy;
@@ -55,11 +54,6 @@ begin
     raise Exception.Create('Digite a sua senha');
   if aUsuario.Email = '' then
     raise Exception.Create('Digite seu email');
-end;
-
-procedure TControllerUsuario.LogarUsuario(aUsuario: TUsuario);
-begin
-  FDAOUsuario.LogarUsuario(aUsuario);
 end;
 
 procedure TControllerUsuario.Validar(aModelUsuario: TUsuario);

@@ -23,6 +23,7 @@ type
       procedure Vincular(const aIdUsuario: Integer; const aShortId: String);
       function GetId(const aShortId: String) : Integer;
       function GetCasasVinculadas(const aIdUsuario: Integer): TList<TCasa>;
+      procedure Desvincular(const aIdUsuario, aIdCasa: Integer);
   end;
 
 
@@ -97,6 +98,39 @@ destructor TDAOCasa.Destroy;
 begin
   FConn.Free;
   inherited;
+end;
+
+procedure TDAOCasa.Desvincular(const aIdUsuario, aIdCasa: Integer);
+var
+  lQuery: TFDQuery;
+begin
+  lQuery := TFDQuery.Create(nil);
+  try
+    try
+      FCOnn.StartTransaction;
+      lQuery.Connection := FCOnn;
+      lQuery.Close;
+      lQuery.SQL.Clear;
+      lQuery.SQL.Add('DELETE FROM');
+      lQuery.SQL.Add('  usuarios_casa');
+      lQuery.SQL.Add('WHERE');
+      lQuery.SQL.Add('  id_usuario = :idUsuario');
+      lQuery.SQL.Add('AND');
+      lQuery.SQL.Add('  id_casa = :idCasa');
+      lQuery.ParamByName('idusuario').AsInteger := aIdUsuario;
+      lQuery.ParamByName('idCasa').AsInteger := aIdCasa;
+      lQuery.ExecSQL;
+      FCOnn.Commit;
+    except
+      on E: Exception do
+      begin
+        FCOnn.Rollback;
+        raise
+      end;
+    end;
+  finally
+    lQuery.Free;
+  end;
 end;
 
 function TDAOCasa.ExisteCasa(aIdUsuario, aIdCasa: Integer): Boolean;
@@ -207,7 +241,7 @@ begin
       lQuery.ParamByName('idUsuario').AsInteger := aIdUsuario;
       lQuery.Open;
       Result := TList<TCasa>.create;
-      while lQuery.Eof do
+      while not lQuery.Eof do
       begin
         lItem := TCasa.Create;
         lItem.ID_CASA := lQuery.FieldByName('id_casa').AsInteger;

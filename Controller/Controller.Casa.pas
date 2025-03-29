@@ -17,6 +17,7 @@ type
       function ExisteCasa(aIdUsuario: Integer; aDescricaoCasa: String): Boolean;
       procedure Vincular(aIdUsuario: Integer; aShortId: String);
       function GetCasasVinculadas(aIdUsuario: Integer): TList<TCasa>;
+      procedure Desvincular(const aIdUsuario, aIdCasa: Integer);
   end;
 
 implementation
@@ -42,6 +43,16 @@ destructor TControllerCasa.Destroy;
 begin
   FDAOCasa.Free;
   inherited;
+end;
+
+procedure TControllerCasa.Desvincular(const aIdUsuario, aIdCasa: Integer);
+begin
+  try
+    FDAOCasa.Desvincular(aIdUsuario, aIdCasa);
+  except
+    on E: Exception do
+    raise Exception.Create('Erro ao desvincular a casa selecionada');
+  end;
 end;
 
 function TControllerCasa.GetCasasVinculadas(aIdUsuario: Integer): TList<TCasa>;

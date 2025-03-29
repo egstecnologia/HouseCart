@@ -135,8 +135,8 @@
             <Form>frmPrincipal</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="View.DesvincularResidencia.pas">
-            <Form>frmDesvincularCasas</Form>
+        <DCCReference Include="View.Residencias.pas">
+            <Form>frmResidencias</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">

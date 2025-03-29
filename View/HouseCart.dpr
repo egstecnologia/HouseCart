@@ -15,7 +15,7 @@ uses
   Controller.Casa in '..\Controller\Controller.Casa.pas',
   DAO.Casa in '..\DAO\DAO.Casa.pas',
   View.Principal in 'View.Principal.pas' {frmPrincipal},
-  View.DesvincularResidencia in 'View.DesvincularResidencia.pas' {frmDesvincularCasas};
+  View.Residencias in 'View.Residencias.pas' {frmResidencias};
 
 {$R *.res}
 
@@ -27,6 +27,6 @@ begin
   Application.CreateForm(TfrmCadResidencia, frmCadResidencia);
   Application.CreateForm(TfrmVinculoResidencia, frmVinculoResidencia);
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
-  Application.CreateForm(TfrmDesvincularCasas, frmDesvincularCasas);
+  Application.CreateForm(TfrmResidencias, frmResidencias);
   Application.Run;
 end.

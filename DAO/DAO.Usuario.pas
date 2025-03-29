@@ -16,7 +16,6 @@ type
   public
     constructor Create(aConn: TFDConnection); reintroduce;
     destructor Destroy; override;
-    function LogarUsuario(aUsuario: TUsuario): TUsuario;
     procedure CadastrarUsuario(aUsuario: TUsuario);
     function CheckEmail(aEmail: String): Boolean;
     function CheckSenha(aEmail, aSenha: String): Boolean;
@@ -152,31 +151,6 @@ begin
     lQuery.ParamByName('email').AsString := aEmail;
     lQuery.Open;
     Result := lQuery.FieldByName('id_usuario').AsInteger;
-
-  finally
-    lQuery.Free;
-  end;
-
-end;
-
-function TDAOUsuario.LogarUsuario(aUsuario: TUsuario): TUsuario;
-var
-  lQuery: TFDQuery;
-begin
-  try
-    lQuery := TFDQuery.Create(nil);
-    lQuery.Connection := FConn;
-    lQuery.Close;
-    lQuery.SQL.Clear;
-    lQuery.SQL.Add('SELECT');
-    lQuery.SQL.Add('  email, senha');
-    lQuery.SQL.Add('FROM');
-    lQuery.SQL.Add('  usuario');
-    lQuery.SQL.Add('WHERE');
-    lQuery.SQL.Add('  email = :email, senha = :=senha');
-    lQuery.ParamByName('email').AsString := aUsuario.Email;
-    lQuery.ParamByName('senha').AsString := aUsuario.Senha;
-
   finally
     lQuery.Free;
   end;
