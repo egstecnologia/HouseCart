@@ -1,7 +1,7 @@
 object frmVinculoResidencia: TfrmVinculoResidencia
   Left = 0
   Top = 0
-  Caption = 'frmVinculoResidencia'
+  Caption = 'Vincular Resid'#234'ncia'
   ClientHeight = 414
   ClientWidth = 582
   Color = clBtnFace
@@ -80,6 +80,7 @@ object frmVinculoResidencia: TfrmVinculoResidencia
         Font.Style = []
         ParentFont = False
         ParentBiDiMode = False
+        OnClick = btnSairClick
         ExplicitLeft = -5
         ExplicitTop = 22
       end

@@ -4,10 +4,10 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
-  System.Classes, System.Generics.Collections, Vcl.Graphics,
+  System.Classes, System.Generics.Collections, System.UITypes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons,
   Vcl.ComCtrls,
-  Model.Casa, Model.Usuario, Controller.Casa, Controller.Usuario;
+  Model.Casa, Model.Usuario, Controller.Casa, Controller.Usuario, DAO.Casa;
 
 type
   TfrmResidencias = class(TForm)
@@ -24,9 +24,14 @@ type
     pnlInluir: TPanel;
     shpBtnIncluir: TShape;
     btnIncluir: TSpeedButton;
+    pnlVoltar: TPanel;
+    shpBtnVoltar: TShape;
+    btnVoltar: TSpeedButton;
     procedure FormShow(Sender: TObject);
     procedure btnIncluirClick(Sender: TObject);
     procedure btnDesvincularClick(Sender: TObject);
+    procedure btnAlterarClick(Sender: TObject);
+    procedure btnVoltarClick(Sender: TObject);
   private
     FController: TControllerCasa;
     FUsuario: TUsuario;
@@ -50,6 +55,34 @@ uses
 
 { TForm2 }
 
+procedure TfrmResidencias.btnAlterarClick(Sender: TObject);
+var
+  lDescricao: String;
+  lItem: TListItem;
+begin
+  lItem := GetSelectedItem;
+  try
+    if MessageDlg('Deseja realmente alterar a descrição?',
+      TMsgDlgType.mtConfirmation, mbYesNo, 0) = mrYes
+    then
+    begin
+      lDescricao:= InputBox('Descrição', 'Digite aqui a descrição desejada',
+        'Descrição');
+
+      if lDescricao = '' then
+        raise Exception.Create('Digite a descrição');
+
+      FController.Alterar(StrToInt(lItem.Caption), lDescricao);
+      PopulateLvCasas;
+    end;
+  except
+    on E: Exception do
+    begin
+      ShowMessage(e.Message);
+    end;
+  end;
+end;
+
 procedure TfrmResidencias.btnDesvincularClick(Sender: TObject);
 begin
   try
@@ -71,13 +104,30 @@ begin
   try
     if MessageDlg('Deseja cadastrar uma nova residência?', TMsgDlgType.mtConfirmation,
       mbYesNo, 0) = mrOk then
-      TfrmCadResidencia.Create(FUsuario)
+      begin
+        TfrmCadResidencia.Create(FUsuario);
+        frmCadResidencia.Parent  := pnlContainer;
+        frmCadResidencia.Align := alClient;
+        frmCadResidencia.BorderStyle := bsNone;
+//        frmCadResidencia.pnlContainer.Align := alClient;
+      end
     else
-      TfrmVinculoResidencia.Create(FUsuario);
+      begin
+        TfrmVinculoResidencia.Create(FUsuario);
+        frmVinculoResidencia.Parent  := pnlContainer;
+        frmVinculoResidencia.Align := alClient;
+        frmVinculoResidencia.BorderStyle := bsNone;
+//        frmVinculoResidencia.pnlContainer.Align := alClient;
+      end;
   except
     on E: Exception do
       ShowMessage(e.Message);
   end;
+end;
+
+procedure TfrmResidencias.btnVoltarClick(Sender: TObject);
+begin
+  Close;
 end;
 
 constructor TfrmResidencias.Create(aUsuario: TUsuario);
@@ -86,7 +136,8 @@ begin
   FUsuario := aUsuario;
   FController := TControllerCasa.Create;
   frmResidencias := Self;
-  frmResidencias.ShowModal;
+  frmResidencias.Show;
+//frmResidencias.ShowModal;
 end;
 
 destructor TfrmResidencias.Destroy;

@@ -16,6 +16,9 @@ type
     shpBtnCasa: TShape;
     pnlInfoUser: TPanel;
     btnCasas: TSpeedButton;
+    pnlBtnDadosPessoais: TPanel;
+    shpBtnDadosPessoais: TShape;
+    btnDadosPessoais: TSpeedButton;
     procedure btnCasasClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
@@ -35,6 +38,9 @@ implementation
 procedure TfrmPrincipal.btnCasasClick(Sender: TObject);
 begin
   TfrmResidencias.Create(FUsuario);
+  frmResidencias.Parent  := pnlForm;
+  frmResidencias.Align := alClient;
+  frmResidencias.BorderStyle := bsNone;
 end;
 
 constructor TfrmPrincipal.Create(aUsuario: TUsuario);

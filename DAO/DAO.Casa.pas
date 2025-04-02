@@ -24,6 +24,7 @@ type
       function GetId(const aShortId: String) : Integer;
       function GetCasasVinculadas(const aIdUsuario: Integer): TList<TCasa>;
       procedure Desvincular(const aIdUsuario, aIdCasa: Integer);
+      procedure Alterar(const aIdCasa: Integer; aDescricao: String);
   end;
 
 
@@ -31,6 +32,36 @@ type
 implementation
 
 { TDAOCasa }
+
+procedure TDAOCasa.Alterar(const aIdCasa: Integer; aDescricao: String);
+var
+  lQuery: TFDQuery;
+begin
+  lQuery := TFDQuery.Create(nil);
+  FCOnn.StartTransaction;
+  try
+    try
+      lQuery.Connection := FCOnn;
+      lQuery.Close;
+      lQuery.SQl.Clear;
+      lQuery.SQL.Add('UPDATE casa');
+      lQuery.SQL.Add('SET descricao = :descricao');
+      lQuery.SQL.Add('WHERE id_casa = :iDCasa');
+      lQuery.ParamByName('descricao').AsString := aDescricao;
+      lQuery.ParamByName('iDCasa').AsInteger := aIdCasa;
+      lQuery.ExecSQL;
+      FCOnn.Commit;
+    except
+      on E: Exception do
+      begin
+        FCOnn.Rollback;
+        raise
+      end;
+    end;
+  finally
+    lQuery.Free;
+  end;
+end;
 
 procedure TDAOCasa.Cadastrar(aModelCasa: TCasa; aUsuario: TUsuario);
 var

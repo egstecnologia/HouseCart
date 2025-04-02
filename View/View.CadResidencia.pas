@@ -20,6 +20,7 @@ type
     btnGravar: TSpeedButton;
     edtDescricao: TEdit;
     procedure btnGravarClick(Sender: TObject);
+    procedure btnSairClick(Sender: TObject);
   private
     FCasa             : TCasa;
     FControllerCasa   : TControllerCasa;
@@ -54,6 +55,11 @@ begin
   end;
 end;
 
+procedure TfrmCadResidencia.btnSairClick(Sender: TObject);
+begin
+  Close;
+end;
+
 constructor TfrmCadResidencia.Create(aUsuario: TUsuario);
 begin
   inherited Create(nil);
@@ -61,7 +67,8 @@ begin
   FControllerCasa := TControllerCasa.Create;
   FCasa := TCasa.Create;
   frmCadResidencia := Self;
-  frmCadResidencia.ShowModal;
+  frmCadResidencia.Show;
+//  frmCadResidencia.ShowModal;
 end;
 
 destructor TfrmCadResidencia.Destroy;

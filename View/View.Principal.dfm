@@ -1,7 +1,7 @@
 object frmPrincipal: TfrmPrincipal
   Left = 0
   Top = 0
-  Caption = 'frmPrincipal'
+  Caption = 'Home'
   ClientHeight = 653
   ClientWidth = 1067
   Color = clBtnFace
@@ -63,10 +63,7 @@ object frmPrincipal: TfrmPrincipal
           Align = alClient
           Caption = 'Acessar Casas'
           OnClick = btnCasasClick
-          ExplicitLeft = 80
-          ExplicitTop = 8
-          ExplicitWidth = 23
-          ExplicitHeight = 22
+          ExplicitLeft = 4
         end
       end
       object pnlInfoUser: TPanel
@@ -81,6 +78,43 @@ object frmPrincipal: TfrmPrincipal
         Padding.Right = 3
         Padding.Bottom = 3
         TabOrder = 1
+      end
+      object pnlBtnDadosPessoais: TPanel
+        Left = 4
+        Top = 86
+        Width = 121
+        Height = 41
+        Align = alTop
+        BevelOuter = bvNone
+        Padding.Left = 3
+        Padding.Top = 3
+        Padding.Right = 3
+        Padding.Bottom = 3
+        TabOrder = 2
+        object shpBtnDadosPessoais: TShape
+          Left = 3
+          Top = 3
+          Width = 115
+          Height = 35
+          Align = alClient
+          Pen.Style = psClear
+          ExplicitLeft = 64
+          ExplicitTop = -8
+          ExplicitWidth = 65
+          ExplicitHeight = 65
+        end
+        object btnDadosPessoais: TSpeedButton
+          Left = 3
+          Top = 3
+          Width = 115
+          Height = 35
+          Align = alClient
+          Caption = 'Dados Pessoais'
+          ExplicitLeft = 80
+          ExplicitTop = 8
+          ExplicitWidth = 23
+          ExplicitHeight = 22
+        end
       end
     end
     object pnlForm: TPanel

@@ -15,7 +15,8 @@ uses
   Controller.Casa in '..\Controller\Controller.Casa.pas',
   DAO.Casa in '..\DAO\DAO.Casa.pas',
   View.Principal in 'View.Principal.pas' {frmPrincipal},
-  View.Residencias in 'View.Residencias.pas' {frmResidencias};
+  View.Residencias in 'View.Residencias.pas' {frmResidencias},
+  View.DadosPessoais in 'View.DadosPessoais.pas' {Form1};
 
 {$R *.res}
 
@@ -28,5 +29,6 @@ begin
   Application.CreateForm(TfrmVinculoResidencia, frmVinculoResidencia);
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.CreateForm(TfrmResidencias, frmResidencias);
+  Application.CreateForm(TForm1, Form1);
   Application.Run;
 end.

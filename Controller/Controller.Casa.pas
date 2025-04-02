@@ -18,12 +18,23 @@ type
       procedure Vincular(aIdUsuario: Integer; aShortId: String);
       function GetCasasVinculadas(aIdUsuario: Integer): TList<TCasa>;
       procedure Desvincular(const aIdUsuario, aIdCasa: Integer);
+      procedure Alterar(const aIdCasa: Integer; aDescricao: String);
   end;
 
 implementation
 
 
 { TControllerCasa }
+
+procedure TControllerCasa.Alterar(const aIdCasa: Integer; aDescricao: String);
+begin
+  try
+    FDAOCasa.Alterar(aIdCasa, aDescricao);
+  except
+    on E: Exception do
+    raise Exception.Create('Erro ao alterar a descrição da casa');
+  end;
+end;
 
 procedure TControllerCasa.Cadastrar(aModelCasa: TCasa; aUsuario: TUsuario);
 begin

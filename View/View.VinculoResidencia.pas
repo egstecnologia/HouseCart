@@ -20,6 +20,7 @@ type
     btnGravar: TSpeedButton;
     edtShortId: TEdit;
     procedure btnGravarClick(Sender: TObject);
+    procedure btnSairClick(Sender: TObject);
   private
     FControllerCasa : TControllerCasa;
     FUsuario : TUsuario;
@@ -46,13 +47,18 @@ begin
   end;
 end;
 
+procedure TfrmVinculoResidencia.btnSairClick(Sender: TObject);
+begin
+  Close;
+end;
+
 constructor TfrmVinculoResidencia.Create(aUsuario: TUsuario);
 begin
   inherited Create(nil);
   FUsuario := aUsuario;
   FControllerCasa := TControllerCasa.Create;
   frmVinculoResidencia := Self;
-  frmVinculoResidencia.ShowModal;
+  frmVinculoResidencia.Show;
 end;
 
 destructor TfrmVinculoResidencia.Destroy;

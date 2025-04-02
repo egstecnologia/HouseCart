@@ -1,7 +1,7 @@
 object frmResidencias: TfrmResidencias
   Left = 0
   Top = 0
-  Caption = 'frmResidencias'
+  Caption = 'Resid'#234'ncias'
   ClientHeight = 661
   ClientWidth = 994
   Color = clBtnFace
@@ -19,7 +19,6 @@ object frmResidencias: TfrmResidencias
     Height = 661
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 911
     object pnlLvResisdencias: TPanel
       Left = 1
       Top = 1
@@ -27,7 +26,6 @@ object frmResidencias: TfrmResidencias
       Height = 583
       Align = alClient
       TabOrder = 0
-      ExplicitWidth = 909
       object lvResidencias: TListView
         Left = 1
         Top = 1
@@ -56,6 +54,8 @@ object frmResidencias: TfrmResidencias
         RowSelect = True
         TabOrder = 0
         ViewStyle = vsReport
+        ExplicitLeft = 2
+        ExplicitTop = -4
       end
     end
     object pnlBotoes: TPanel
@@ -65,7 +65,6 @@ object frmResidencias: TfrmResidencias
       Height = 76
       Align = alBottom
       TabOrder = 1
-      ExplicitWidth = 909
       object pnlBtnAlterar: TPanel
         Left = 31
         Top = 9
@@ -97,6 +96,7 @@ object frmResidencias: TfrmResidencias
           Height = 35
           Align = alClient
           Caption = 'Alterar'
+          OnClick = btnAlterarClick
           ExplicitLeft = 27
           ExplicitTop = 11
         end
@@ -171,6 +171,42 @@ object frmResidencias: TfrmResidencias
           OnClick = btnIncluirClick
           ExplicitLeft = 43
           ExplicitTop = 11
+        end
+      end
+      object pnlVoltar: TPanel
+        Left = 473
+        Top = 9
+        Width = 143
+        Height = 41
+        Align = alCustom
+        BevelOuter = bvNone
+        Padding.Left = 3
+        Padding.Top = 3
+        Padding.Right = 3
+        Padding.Bottom = 3
+        TabOrder = 3
+        object shpBtnVoltar: TShape
+          Left = 3
+          Top = 3
+          Width = 137
+          Height = 35
+          Align = alClient
+          Pen.Style = psClear
+          ExplicitLeft = 64
+          ExplicitTop = -8
+          ExplicitWidth = 65
+          ExplicitHeight = 65
+        end
+        object btnVoltar: TSpeedButton
+          Left = 3
+          Top = 3
+          Width = 137
+          Height = 35
+          Align = alClient
+          Caption = 'Voltar'
+          OnClick = btnVoltarClick
+          ExplicitLeft = 107
+          ExplicitTop = 19
         end
       end
     end

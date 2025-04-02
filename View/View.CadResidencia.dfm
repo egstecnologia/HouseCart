@@ -80,6 +80,7 @@ object frmCadResidencia: TfrmCadResidencia
         Font.Style = []
         ParentFont = False
         ParentBiDiMode = False
+        OnClick = btnSairClick
         ExplicitLeft = -5
         ExplicitTop = 22
       end
