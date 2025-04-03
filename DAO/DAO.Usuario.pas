@@ -20,7 +20,7 @@ type
     function CheckEmail(aEmail: String): Boolean;
     function CheckSenha(aEmail, aSenha: String): Boolean;
     function GetId(aEmail: String): Integer;
-
+    function GetUser(aIdUsuario: Integer): TUsuario;
   end;
 
 implementation
@@ -155,4 +155,30 @@ begin
     lQuery.Free;
   end;
 end;
+function TDAOUsuario.GetUser(aIdUsuario: Integer): TUsuario;
+var
+  lQuery: TFDQuery;
+begin
+  lQuery := TFDQuery.Create(nil);
+  Result := TUsuario.Create;
+  try
+    lQuery.Connection := FConn;
+    lQuery.Close;
+    lQuery.SQL.Clear;
+    lQuery.SQL.Add('SELECT');
+    lQuery.SQL.Add('  nome, email, senha');
+    lQuery.SQL.Add('FROM');
+    lQuery.SQL.Add('  usuario');
+    lQuery.SQL.Add('WHERE');
+    lQuery.SQL.Add('  id_usuario = :id_usuario');
+    lQuery.ParamByName('id_usuario').AsInteger := aIdUsuario;
+    lQuery.Open;
+    Result.Nome  := lQuery.FieldByName('nome').AsString;
+    Result.Email := lQuery.FieldByName('email').AsString;
+    Result.Senha := lQuery.FieldByName('senha').AsString;
+  finally
+    lQuery.Free;
+  end;
+end;
+
 end.

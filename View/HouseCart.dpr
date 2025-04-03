@@ -16,7 +16,7 @@ uses
   DAO.Casa in '..\DAO\DAO.Casa.pas',
   View.Principal in 'View.Principal.pas' {frmPrincipal},
   View.Residencias in 'View.Residencias.pas' {frmResidencias},
-  View.DadosPessoais in 'View.DadosPessoais.pas' {Form1};
+  View.DadosPessoais in 'View.DadosPessoais.pas' {frmAlterarDadosPessoais};
 
 {$R *.res}
 
@@ -29,6 +29,6 @@ begin
   Application.CreateForm(TfrmVinculoResidencia, frmVinculoResidencia);
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.CreateForm(TfrmResidencias, frmResidencias);
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TfrmAlterarDadosPessoais, frmAlterarDadosPessoais);
   Application.Run;
 end.

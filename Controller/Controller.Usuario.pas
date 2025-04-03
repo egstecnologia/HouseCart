@@ -19,6 +19,7 @@ type
       function ExistsEmail(aEmail: string): Boolean;
       function CheckSenha(aEmail, aSenha: String): Boolean;
       function GetID(aEmail: String): Integer;
+      function GetUser(aIdUsuario: Integer): TUsuario;
   end;
 
 implementation
@@ -75,6 +76,11 @@ end;
 function TControllerUsuario.GetID(aEmail: String): Integer;
 begin
   Result := FDAOUsuario.GetId(aEmail);
+end;
+
+function TControllerUsuario.GetUser(aIdUsuario: Integer): TUsuario;
+begin
+  Result := FDAOUsuario.GetUser(aIdUsuario);
 end;
 
 end.

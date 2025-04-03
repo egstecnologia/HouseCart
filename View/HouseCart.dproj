@@ -140,7 +140,7 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="View.DadosPessoais.pas">
-            <Form>Form1</Form>
+            <Form>frmAlterarDadosPessoais</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">
