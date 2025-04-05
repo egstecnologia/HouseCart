@@ -16,7 +16,10 @@ uses
   DAO.Casa in '..\DAO\DAO.Casa.pas',
   View.Principal in 'View.Principal.pas' {frmPrincipal},
   View.Residencias in 'View.Residencias.pas' {frmResidencias},
-  View.DadosPessoais in 'View.DadosPessoais.pas' {frmAlterarDadosPessoais};
+  View.DadosPessoais in 'View.DadosPessoais.pas' {frmAlterarDadosPessoais},
+  DAO.Produtos in '..\DAO\DAO.Produtos.pas',
+  Model.Produtos in '..\Model\Model.Produtos.pas',
+  Controller.Produtos in '..\Controller\Controller.Produtos.pas';
 
 {$R *.res}
 
@@ -25,10 +28,5 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDM_Dados, DM_Dados);
   Application.CreateForm(TfrmLogin, frmLogin);
-  Application.CreateForm(TfrmCadResidencia, frmCadResidencia);
-  Application.CreateForm(TfrmVinculoResidencia, frmVinculoResidencia);
-  Application.CreateForm(TfrmPrincipal, frmPrincipal);
-  Application.CreateForm(TfrmResidencias, frmResidencias);
-  Application.CreateForm(TfrmAlterarDadosPessoais, frmAlterarDadosPessoais);
   Application.Run;
 end.

@@ -32,13 +32,14 @@ type
     procedure btnDesvincularClick(Sender: TObject);
     procedure btnAlterarClick(Sender: TObject);
     procedure btnVoltarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     FController: TControllerCasa;
     FUsuario: TUsuario;
     procedure PopulateLvCasas;
     function GetSelectedItem: TListItem;
   public
-    constructor Create(aUsuario: TUsuario); reintroduce;
+    constructor Create(aUsuario: TUsuario; aOwner: TObject); reintroduce;
     destructor Destroy; override;
   end;
 
@@ -130,12 +131,18 @@ begin
   Close;
 end;
 
-constructor TfrmResidencias.Create(aUsuario: TUsuario);
+constructor TfrmResidencias.Create(aUsuario: TUsuario; aOwner: TObject);
 begin
-  inherited Create(nil);
-  FUsuario := aUsuario;
-  FController := TControllerCasa.Create;
-  frmResidencias := Self;
+  if not Assigned(frmResidencias) then
+  begin
+    inherited Create(nil);
+    FUsuario := aUsuario;
+    FController := TControllerCasa.Create;
+    frmResidencias := Self;
+    frmResidencias.Parent  := aOwner as TPanel;
+    frmResidencias.Align := alClient;
+    frmResidencias.BorderStyle := bsNone;
+  end;
   frmResidencias.Show;
 //frmResidencias.ShowModal;
 end;
@@ -145,6 +152,12 @@ begin
   FUsuario.Free;
   FController.Free;
   inherited;
+end;
+
+procedure TfrmResidencias.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+//  frmResidencias := nil;
+//  Action := caFree;
 end;
 
 procedure TfrmResidencias.FormShow(Sender: TObject);

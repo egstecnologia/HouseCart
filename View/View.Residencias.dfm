@@ -10,6 +10,7 @@ object frmResidencias: TfrmResidencias
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnClose = FormClose
   OnShow = FormShow
   TextHeight = 15
   object pnlContainer: TPanel
@@ -54,8 +55,6 @@ object frmResidencias: TfrmResidencias
         RowSelect = True
         TabOrder = 0
         ViewStyle = vsReport
-        ExplicitLeft = 2
-        ExplicitTop = -4
       end
     end
     object pnlBotoes: TPanel

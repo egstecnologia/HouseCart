@@ -9,22 +9,28 @@ type
   TControllerUsuario = class
     private
       FDAOUsuario: TDAOUsuario;
-      procedure IsEnpty(aUsuario: TUsuario);
     public
       constructor Create;
       destructor Destroy; override;
       procedure CadastraUsuario (aUsuario: TUsuario);
       procedure Validar(aModelUsuario: TUsuario);
       procedure ValidarEmail(aEmail: String);
-      function ExistsEmail(aEmail: string): Boolean;
+      function ExistsEmail(aEmail: string; aIDUsuario: Integer = 0): Boolean;
       function CheckSenha(aEmail, aSenha: String): Boolean;
       function GetID(aEmail: String): Integer;
       function GetUser(aIdUsuario: Integer): TUsuario;
+      procedure Alterar(aUsuario: TUsuario);
+      procedure IsEnpty(aUsuario: TUsuario);
   end;
 
 implementation
 
 { TControllerUsuario }
+
+procedure TControllerUsuario.Alterar(aUsuario: TUsuario);
+begin
+  FDAOUsuario.Alterar(aUsuario);
+end;
 
 procedure TControllerUsuario.CadastraUsuario(aUsuario: TUsuario);
 begin
@@ -69,9 +75,9 @@ begin
     raise Exception.Create('Formato de email invalido');
 end;
 
-function TControllerUsuario.ExistsEmail(aEmail: string): Boolean;
+function TControllerUsuario.ExistsEmail(aEmail: string; aIDUsuario: Integer = 0): Boolean;
 begin
-  Result := FDAOUsuario.CheckEmail(aEmail);
+  Result := FDAOUsuario.CheckEmail(aEmail, AIdUsuario);
 end;
 function TControllerUsuario.GetID(aEmail: String): Integer;
 begin

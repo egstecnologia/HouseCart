@@ -110,6 +110,7 @@ object frmPrincipal: TfrmPrincipal
           Height = 35
           Align = alClient
           Caption = 'Dados Pessoais'
+          OnClick = btnDadosPessoaisClick
           ExplicitLeft = 80
           ExplicitTop = 8
           ExplicitWidth = 23

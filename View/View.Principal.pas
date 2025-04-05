@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Buttons,
-  View.Residencias, Model.Usuario;
+  View.Residencias, Model.Usuario, View.DadosPessoais;
 
 type
   TfrmPrincipal = class(TForm)
@@ -21,6 +21,7 @@ type
     btnDadosPessoais: TSpeedButton;
     procedure btnCasasClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnDadosPessoaisClick(Sender: TObject);
   private
     FUsuario: TUsuario;
   public
@@ -37,10 +38,12 @@ implementation
 
 procedure TfrmPrincipal.btnCasasClick(Sender: TObject);
 begin
-  TfrmResidencias.Create(FUsuario);
-  frmResidencias.Parent  := pnlForm;
-  frmResidencias.Align := alClient;
-  frmResidencias.BorderStyle := bsNone;
+    TfrmResidencias.Create(FUsuario, pnlForm);
+end;
+
+procedure TfrmPrincipal.btnDadosPessoaisClick(Sender: TObject);
+begin
+  TfrmAlterarDadosPessoais.Create(FUsuario, pnlForm);
 end;
 
 constructor TfrmPrincipal.Create(aUsuario: TUsuario);

@@ -10,7 +10,6 @@ uses
 type
   TfrmAlterarDadosPessoais = class(TForm)
     pnlContainer: TPanel;
-    pnlLateral: TPanel;
     pnlInfo: TPanel;
     pnlEmail: TPanel;
     lblEmail: TLabel;
@@ -36,11 +35,14 @@ type
     shpBtnVoltar: TShape;
     btnVoltar: TSpeedButton;
     procedure FormShow(Sender: TObject);
+    procedure btnVoltarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnGravarClick(Sender: TObject);
   private
     FUsuario: TUsuario;
     FController: TControllerUsuario;
   public
-    constructor Create(aUsuario : TUsuario); reintroduce;
+    constructor Create(aUsuario : TUsuario; aOwner: TObject); reintroduce;
     destructor Destroy; override;
     procedure ListarDados;
   end;
@@ -52,12 +54,43 @@ implementation
 
 {$R *.dfm}
 
-constructor TfrmAlterarDadosPessoais.Create(aUsuario : TUsuario);
+procedure TfrmAlterarDadosPessoais.btnGravarClick(Sender: TObject);
 begin
-  inherited Create(nil);
-  FUsuario := aUsuario;
-  FController := TControllerUsuario.Create;
-  frmAlterarDadosPessoais := Self;
+  try
+    FUsuario.Nome := edtNomeUser.Text;
+    FUsuario.Email := edtEmail.Text;
+    FUsuario.Senha := edtSenha.Text;
+    FController.IsEnpty(FUsuario);
+    if edtConfSenha.Text <> edtSenha.Text then
+      raise Exception.Create('As senhas não coincidem, digite novamente!');
+    FController.ValidarEmail(FUsuario.Email);
+    if FController.ExistsEmail(FUsuario.Email, FUsuario.IDUsuario) then
+      raise Exception.Create('Email já cadastrado em nossa base');
+    FController.Alterar(FUsuario);
+    ShowMessage('Usuario alterado com sucesso');
+  except
+    on E: Exception do
+    ShowMessage(e.Message)
+  end;
+end;
+
+procedure TfrmAlterarDadosPessoais.btnVoltarClick(Sender: TObject);
+begin
+  Close;
+end;
+
+constructor TfrmAlterarDadosPessoais.Create(aUsuario : TUsuario; aOwner: TObject);
+begin
+  if not Assigned(frmAlterarDadosPessoais) then
+  begin
+    inherited Create(nil);
+    FUsuario := aUsuario;
+    FController := TControllerUsuario.Create;
+    frmAlterarDadosPessoais := Self;
+    frmAlterarDadosPessoais.Parent := aOwner as TPanel;
+    frmAlterarDadosPessoais.Align := alClient;
+    frmAlterarDadosPessoais.BorderStyle := bsNone;
+  end;
   frmAlterarDadosPessoais.Show;
 end;
 
@@ -66,6 +99,13 @@ begin
   FUsuario.Free;
   FController.Free;
   inherited
+end;
+
+procedure TfrmAlterarDadosPessoais.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+//  Action := caFree;
+//  frmAlterarDadosPessoais := nil;
 end;
 
 procedure TfrmAlterarDadosPessoais.FormShow(Sender: TObject);
@@ -82,7 +122,7 @@ begin
     edtNomeUser.Text := lUsuario.Nome;
     edtEmail.Text := lUsuario.Email;
     edtSenha.Text := lUsuario.Senha;
-    edtSenha.Text := lUsuario.Senha;
+    edtConfSenha.Text := lUsuario.Senha;
   finally
     lUsuario.Free;
   end;

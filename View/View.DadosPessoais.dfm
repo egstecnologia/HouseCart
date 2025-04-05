@@ -10,6 +10,7 @@ object frmAlterarDadosPessoais: TfrmAlterarDadosPessoais
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnClose = FormClose
   OnShow = FormShow
   TextHeight = 15
   object pnlContainer: TPanel
@@ -19,27 +20,18 @@ object frmAlterarDadosPessoais: TfrmAlterarDadosPessoais
     Height = 697
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 624
-    ExplicitHeight = 441
-    object pnlLateral: TPanel
+    object pnlInfo: TPanel
       Left = 1
       Top = 1
-      Width = 136
-      Height = 695
-      Align = alLeft
-      TabOrder = 0
-    end
-    object pnlInfo: TPanel
-      Left = 137
-      Top = 1
-      Width = 899
+      Width = 1035
       Height = 695
       Align = alClient
       BevelOuter = bvNone
-      TabOrder = 1
-      ExplicitLeft = 143
+      TabOrder = 0
+      ExplicitLeft = 137
+      ExplicitWidth = 899
       object pnlEmail: TPanel
-        Left = 192
+        Left = 290
         Top = 267
         Width = 497
         Height = 34
@@ -90,7 +82,7 @@ object frmAlterarDadosPessoais: TfrmAlterarDadosPessoais
         end
       end
       object pnlSenha: TPanel
-        Left = 183
+        Left = 281
         Top = 307
         Width = 235
         Height = 34
@@ -137,11 +129,12 @@ object frmAlterarDadosPessoais: TfrmAlterarDadosPessoais
           BevelInner = bvNone
           BevelOuter = bvNone
           BorderStyle = bsNone
+          PasswordChar = '*'
           TabOrder = 0
         end
       end
       object pnlConfSenha: TPanel
-        Left = 419
+        Left = 517
         Top = 307
         Width = 268
         Height = 34
@@ -188,11 +181,12 @@ object frmAlterarDadosPessoais: TfrmAlterarDadosPessoais
           BevelInner = bvNone
           BevelOuter = bvNone
           BorderStyle = bsNone
+          PasswordChar = '*'
           TabOrder = 0
         end
       end
       object pnlNomeUser: TPanel
-        Left = 183
+        Left = 281
         Top = 228
         Width = 504
         Height = 34
@@ -245,12 +239,13 @@ object frmAlterarDadosPessoais: TfrmAlterarDadosPessoais
       object pnlBotoes: TPanel
         Left = 0
         Top = 619
-        Width = 899
+        Width = 1035
         Height = 76
         Align = alBottom
         TabOrder = 4
+        ExplicitWidth = 899
         object pnlBtnGravar: TPanel
-          Left = 266
+          Left = 354
           Top = 9
           Width = 143
           Height = 41
@@ -284,11 +279,12 @@ object frmAlterarDadosPessoais: TfrmAlterarDadosPessoais
             Align = alClient
             Caption = 'Gravar'
             Flat = True
+            OnClick = btnGravarClick
             ExplicitLeft = 27
           end
         end
         object pnlVoltar: TPanel
-          Left = 441
+          Left = 529
           Top = 9
           Width = 143
           Height = 41
@@ -318,6 +314,7 @@ object frmAlterarDadosPessoais: TfrmAlterarDadosPessoais
             Height = 35
             Align = alClient
             Caption = 'Voltar'
+            OnClick = btnVoltarClick
             ExplicitLeft = 27
           end
         end

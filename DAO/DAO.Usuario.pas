@@ -17,10 +17,11 @@ type
     constructor Create(aConn: TFDConnection); reintroduce;
     destructor Destroy; override;
     procedure CadastrarUsuario(aUsuario: TUsuario);
-    function CheckEmail(aEmail: String): Boolean;
+    function CheckEmail(aEmail: String; aIdUsuario: Integer = 0): Boolean;
     function CheckSenha(aEmail, aSenha: String): Boolean;
     function GetId(aEmail: String): Integer;
     function GetUser(aIdUsuario: Integer): TUsuario;
+    procedure Alterar(aUsuario: TUsuario);
   end;
 
 implementation
@@ -29,6 +30,43 @@ uses
   Vcl.Dialogs;
 
 { TDAOUsuario }
+
+procedure TDAOUsuario.Alterar(aUsuario: TUsuario);
+var
+  lQuery: TFDQuery;
+begin
+  lQuery := TFDQuery.Create(nil);
+  try
+    try
+      FConn.StartTransaction;
+      lQuery.Close;
+      lQuery.SQL.Clear;
+      lQuery.Connection := FConn;
+      lQuery.SQL.Add('UPDATE usuario SET');
+      lQuery.SQL.Add('  nome  = :nome,');
+      lQuery.SQL.Add('  email = :email,');
+      lQuery.SQL.Add('  senha = :senha');
+      lQuery.SQL.Add('WHERE');
+      lQuery.SQL.Add('  id_usuario = :idUsuario');
+      lQuery.ParamByName('idUsuario').AsInteger := aUsuario.IDUsuario;
+      lQuery.ParamByName('nome').AsString := aUsuario.Nome;
+      lQuery.ParamByName('email').AsString := aUsuario.Email;
+      lQuery.ParamByName('senha').AsString := aUsuario.Senha;
+      lQuery.ExecSQL;
+      FConn.Commit;
+    except
+      on E: Exception do
+      begin
+        FConn.Rollback;
+        raise
+      end;
+    end;
+
+  finally
+    lQuery.Free;
+  end;
+
+end;
 
 procedure TDAOUsuario.CadastrarUsuario(aUsuario: TUsuario);
 var
@@ -74,7 +112,7 @@ begin
 end;
 
 
-function TDAOUsuario.CheckEmail(aEmail: String): Boolean;
+function TDAOUsuario.CheckEmail(aEmail: String; aIdUsuario: Integer = 0): Boolean;
 var
   lQuery: TFDQuery;
 begin
@@ -89,7 +127,13 @@ begin
     lQuery.SQL.Add('  usuario');
     lQuery.SQL.Add('WHERE');
     lQuery.SQL.Add('  email = :email');
+    if aIdUsuario <> 0 then
+    begin
+      lQuery.SQL.Add('  and id_usuario <> :idusuario');
+      lQuery.ParamByName('idusuario').AsInteger := aIdUsuario;
+    end;
     lQuery.ParamByName('email').AsString := aEmail;
+
     lQuery.Open;
     Result := lQuery.RecordCount > 0;
   finally
