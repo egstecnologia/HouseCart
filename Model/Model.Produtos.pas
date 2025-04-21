@@ -25,6 +25,7 @@ type
     property Validade: TDate read FValidade write FValidade;
     property EstoqueMin: Double read FEstoqueMin write FEstoqueMin;
     property IdCasa: Integer read FIdCasa write FIdCasa;
+
   end;
 
 implementation
