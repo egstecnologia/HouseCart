@@ -2,8 +2,8 @@ object frmCadastroProduto: TfrmCadastroProduto
   Left = 0
   Top = 0
   Caption = 'Cadastro de Produtos'
-  ClientHeight = 441
-  ClientWidth = 782
+  ClientHeight = 491
+  ClientWidth = 834
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,32 +14,36 @@ object frmCadastroProduto: TfrmCadastroProduto
   object pnlConteiner: TPanel
     Left = 0
     Top = 0
-    Width = 782
-    Height = 441
+    Width = 834
+    Height = 491
     Align = alClient
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
+    ExplicitWidth = 782
+    ExplicitHeight = 441
     object pnlMenuLateral: TPanel
       Left = 1
       Top = 1
       Width = 88
-      Height = 439
+      Height = 413
       Align = alLeft
       Color = clWhite
       ParentBackground = False
       TabOrder = 0
+      ExplicitHeight = 439
     end
     object pnlCampos: TPanel
       Left = 89
       Top = 1
-      Width = 692
-      Height = 439
+      Width = 744
+      Height = 413
       Align = alClient
       Color = clWhite
       ParentBackground = False
       TabOrder = 1
-      ExplicitLeft = 95
+      ExplicitWidth = 692
+      ExplicitHeight = 439
       object pnlCamposProdutos: TPanel
         Left = 32
         Top = 31
@@ -298,6 +302,156 @@ object frmCadastroProduto: TfrmCadastroProduto
           Font.Style = []
           ParentFont = False
           TabOrder = 6
+        end
+      end
+    end
+    object pnlBotoes: TPanel
+      Left = 1
+      Top = 414
+      Width = 832
+      Height = 76
+      Align = alBottom
+      TabOrder = 2
+      ExplicitLeft = 2
+      ExplicitTop = 406
+      object pnlBtnAlterar: TPanel
+        Left = 234
+        Top = 6
+        Width = 143
+        Height = 41
+        Align = alCustom
+        BevelOuter = bvNone
+        Padding.Left = 3
+        Padding.Top = 3
+        Padding.Right = 3
+        Padding.Bottom = 3
+        TabOrder = 0
+        object shpBtnAlterar: TShape
+          Left = 3
+          Top = 3
+          Width = 137
+          Height = 35
+          Align = alClient
+          Pen.Style = psClear
+          ExplicitLeft = 64
+          ExplicitTop = -8
+          ExplicitWidth = 65
+          ExplicitHeight = 65
+        end
+        object btnAlterar: TSpeedButton
+          Left = 3
+          Top = 3
+          Width = 137
+          Height = 35
+          Align = alClient
+          Caption = 'Alterar'
+          ExplicitLeft = 36
+          ExplicitTop = 0
+        end
+      end
+      object pnlBtnDesvincular: TPanel
+        Left = 413
+        Top = 6
+        Width = 143
+        Height = 41
+        Align = alCustom
+        BevelOuter = bvNone
+        Padding.Left = 3
+        Padding.Top = 3
+        Padding.Right = 3
+        Padding.Bottom = 3
+        TabOrder = 1
+        object shpBtnDesvincular: TShape
+          Left = 3
+          Top = 3
+          Width = 137
+          Height = 35
+          Align = alClient
+          Pen.Style = psClear
+          ExplicitLeft = 64
+          ExplicitTop = -8
+          ExplicitWidth = 65
+          ExplicitHeight = 65
+        end
+        object btnDesvincular: TSpeedButton
+          Left = 3
+          Top = 3
+          Width = 137
+          Height = 35
+          Align = alClient
+          Caption = 'Desvincular'
+          ExplicitTop = -3
+        end
+      end
+      object pnlInluir: TPanel
+        Left = 88
+        Top = 6
+        Width = 143
+        Height = 41
+        Align = alCustom
+        BevelOuter = bvNone
+        Padding.Left = 3
+        Padding.Top = 3
+        Padding.Right = 3
+        Padding.Bottom = 3
+        TabOrder = 2
+        object shpBtnIncluir: TShape
+          Left = 3
+          Top = 3
+          Width = 137
+          Height = 35
+          Align = alClient
+          Pen.Style = psClear
+          ExplicitLeft = 64
+          ExplicitTop = -8
+          ExplicitWidth = 65
+          ExplicitHeight = 65
+        end
+        object btnIncluir: TSpeedButton
+          Left = 3
+          Top = 3
+          Width = 137
+          Height = 35
+          Align = alClient
+          Caption = 'Incluir'
+          OnClick = btnIncluirClick
+          ExplicitLeft = 43
+          ExplicitTop = 11
+        end
+      end
+      object pnlVoltar: TPanel
+        Left = 562
+        Top = 6
+        Width = 143
+        Height = 41
+        Align = alCustom
+        BevelOuter = bvNone
+        Padding.Left = 3
+        Padding.Top = 3
+        Padding.Right = 3
+        Padding.Bottom = 3
+        TabOrder = 3
+        object shpBtnVoltar: TShape
+          Left = 3
+          Top = 3
+          Width = 137
+          Height = 35
+          Align = alClient
+          Pen.Style = psClear
+          ExplicitLeft = 64
+          ExplicitTop = -8
+          ExplicitWidth = 65
+          ExplicitHeight = 65
+        end
+        object btnVoltar: TSpeedButton
+          Left = 3
+          Top = 3
+          Width = 137
+          Height = 35
+          Align = alClient
+          Caption = 'Voltar'
+          ExplicitLeft = 107
+          ExplicitTop = 19
         end
       end
     end

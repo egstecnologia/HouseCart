@@ -3,8 +3,9 @@ unit View.CadProduto;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls,
+  Vcl.StdCtrls, Vcl.Buttons, Model.Produtos, Controller.Produtos;
 
 type
   TfrmCadastroProduto = class(TForm)
@@ -33,6 +34,20 @@ type
     edtEstMinimo: TEdit;
     lblEstMinimo: TLabel;
     shpEstMinimo: TShape;
+    pnlBotoes: TPanel;
+    pnlBtnAlterar: TPanel;
+    shpBtnAlterar: TShape;
+    btnAlterar: TSpeedButton;
+    pnlBtnDesvincular: TPanel;
+    shpBtnDesvincular: TShape;
+    btnDesvincular: TSpeedButton;
+    pnlInluir: TPanel;
+    shpBtnIncluir: TShape;
+    btnIncluir: TSpeedButton;
+    pnlVoltar: TPanel;
+    shpBtnVoltar: TShape;
+    btnVoltar: TSpeedButton;
+    procedure btnIncluirClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -45,5 +60,14 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmCadastroProduto.btnIncluirClick(Sender: TObject);
+begin
+  try
+    edtDescricaoProduto
+  except
+    on E: Exception do
+  end;
+end;
 
 end.

@@ -18,14 +18,15 @@ type
   public
     constructor Create(aCon: TFDConnection);
     destructor Destroy; override;
-    procedure Cadastar (aProduto: TProduto);
+    procedure Cadastar (aProduto: TProduto; aIdCasa: integer);
+    function Get(aIdCasa: Integer): TList<TProduto>;
   end;
 
 implementation
 
 { TDAOProdutos }
 
-procedure TDAOProdutos.Cadastar(aProduto: TProduto);
+procedure TDAOProdutos.Cadastar(aProduto: TProduto; aIdCasa: integer);
 var
   lQuery: TFDQuery;
 begin
@@ -39,6 +40,9 @@ begin
       lQuery.SQL.Add('INSERT INTO produto (');
       lQuery.SQL.Add('  descricao, qtde, valor_ult_compra, ');
       lQuery.SQL.Add('  valor_atual, und, validade, estoque_min, idCasa)');
+      lQuery.SQL.Add('VALUES (');
+      lQuery.SQL.Add('  :descricao, :qtde, :valor_ult_compra,');
+      lQuery.SQL.Add('  :valor_atual, :und, :validade, :estoque_min, :idCasa)');
 
       lQuery.ParamByName('descricao').AsString := aProduto.Descricao;
       lQuery.ParamByName('qtde').AsFloat := aProduto.Qtde;
@@ -47,16 +51,16 @@ begin
       lQuery.ParamByName('und').AsString := aProduto.Und;
       lQuery.ParamByName('validade').AsDate := aProduto.Validade;
       lQuery.ParamByName('estoque_min').AsFloat := aProduto.EstoqueMin;
-      lQuery.ExecSQL;
+      lQuery.ParamByName('id_casa').AsInteger := aIdCasa;
 
-      lQuery.Close;
-      lQuery.SQL.Add('SELECT id_casa FROM usuarios_casa');
-      lQuery.SQL.Add('WHERE id_usuario = :id_usuario ');
+      lQuery.ExecSQL;
+      FCOn.Commit;
 
     except
       on E: Exception do
       begin
         //Rolback
+        FCon.Rollback;
         raise
       end;
     end;
@@ -76,6 +80,47 @@ destructor TDAOProdutos.Destroy;
 begin
   FCon.Free;
   inherited;
+end;
+
+function TDAOProdutos.Get(aIdCasa: Integer): TList<TProduto>;
+var
+  lQuery: TFDQuery;
+  lProduto: TProduto;
+begin
+  result := TList<TProduto>.Create;
+  lQuery := TFDQuery.Create(nil);
+  lQuery.Connection := FCon;
+  try
+    lQuery.Close;
+    lQuery.SQL.Clear;
+    lQuery.SQL.Add('SELECT  idProduto, descricao, qtde, valor_ult_compra,');
+    lQuery.SQL.Add('  valor_atual, und, validade, estoque_min, idCasa');
+    lQuery.SQL.Add('FROM produto');
+    lQuery.SQL.Add('WHERE');
+    lQuery.SQL.Add('  id_casa = :id_casa');
+    lQuery.ParamByName('id_casa').AsInteger := aIdCasa;
+    lQuery.Open;
+
+    while not lQuery.Eof do
+    begin
+      lProduto := TProduto.Create;
+      lProduto.IdProduto := lQuery.FieldByName('idProduto').AsInteger;
+      lProduto.Descricao := lQuery.FieldByName('descricao').AsString;
+      lProduto.Qtde := lQuery.FieldByName('qtde').AsFloat;
+      lProduto.ValorUltCompra := lQuery.FieldByName('valor_ult_compra').AsFloat;
+      lProduto.ValorAtual := lQuery.FieldByName('valor_atual').AsFloat;
+      lProduto.Und := lQuery.FieldByName('und').AsString;
+      lProduto.Validade := lQuery.FieldByName('validade').AsDateTime;
+      lProduto.EstoqueMin := lQuery.FieldByName('estoque_min').AsFloat;
+      lProduto.IdCasa := lQuery.FieldByName('idCasa').AsInteger;
+      Result.Add(lProduto);
+      lQuery.Next;
+    end;
+
+
+  finally
+    lQuery.Free;
+  end;
 end;
 
 end.
