@@ -19,7 +19,8 @@ uses
   View.DadosPessoais in 'View.DadosPessoais.pas' {frmAlterarDadosPessoais},
   DAO.Produtos in '..\DAO\DAO.Produtos.pas',
   Model.Produtos in '..\Model\Model.Produtos.pas',
-  Controller.Produtos in '..\Controller\Controller.Produtos.pas';
+  Controller.Produtos in '..\Controller\Controller.Produtos.pas',
+  View.PesquisaCasas in 'View.PesquisaCasas.pas' {frmPesquisaCasa};
 
 {$R *.res}
 

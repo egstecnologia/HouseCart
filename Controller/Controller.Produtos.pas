@@ -17,7 +17,7 @@ type
   public
     constructor Create;
     destructor Destroy; override;
-    procedure Cadastar (aProduto: TProduto; aIdCasa: integer);
+    procedure Cadastar (aProduto: TProduto);
     function Get(aIdCasa: Integer): TList<TProduto>;
     procedure IsEmpity (aProduto: TProduto);
   end;
@@ -26,9 +26,13 @@ implementation
 
 { TControllerProduto }
 
-procedure TControllerProduto.Cadastar(aProduto: TProduto; aIdCasa: integer);
+procedure TControllerProduto.Cadastar(aProduto: TProduto);
 begin
-  FDAO.Cadastar(aProduto, aIdCasa);
+  try
+    FDAO.Cadastar(aProduto);
+  except on E: Exception do
+    raise;
+  end;
 end;
 
 constructor TControllerProduto.Create;
@@ -53,7 +57,7 @@ begin
     raise Exception.Create('Digite uma descrição');
   if aProduto.Qtde = 0 then
     raise Exception.Create('Digite a quantidade comprada');
-  if aProduto.ValorAtual = StrToInt('') then
+  if aProduto.ValorAtual = 0 then
     raise Exception.Create('Informe o valor atual da compra');
   if aProduto.Und = '' then
     raise Exception.Create('Informe a unidade de medida');

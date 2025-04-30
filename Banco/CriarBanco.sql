@@ -61,6 +61,19 @@ ID_USUARIO INT not null,
 ID_CASA INT not null
 )
 
+create sequence GEN_ID_PRODUTO;
+
+set term ^^;
+    create trigger TRG_ID_PRODUTO FOR produto
+    active before insert position 0
+as
+begin
+    if (NEW.ID_PRODUTO is NULL) then
+       NEW.ID_PRODUTO = next value for gen_ID_PRODUTO;
+end ^^
+set term;^^
+
+
 alter table produto
 add constraint FK_produto_ID_USUARIO
 foreign key (ID_USUARIO)

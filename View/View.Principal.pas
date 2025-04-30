@@ -3,9 +3,12 @@ unit View.Principal;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Buttons,
-  View.Residencias, Model.Usuario, View.DadosPessoais;
+  Winapi.Windows, Winapi.Messages,
+  System.SysUtils, System.Variants, System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.ExtCtrls, Vcl.Buttons,
+  View.Residencias, View.DadosPessoais, View.CadProduto,
+  Model.Usuario, Model.Produtos;
 
 type
   TfrmPrincipal = class(TForm)
@@ -19,9 +22,13 @@ type
     pnlBtnDadosPessoais: TPanel;
     shpBtnDadosPessoais: TShape;
     btnDadosPessoais: TSpeedButton;
+    pnlBtnProdutos: TPanel;
+    shpBtnProdutos: TShape;
+    btnProdutos: TSpeedButton;
     procedure btnCasasClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnDadosPessoaisClick(Sender: TObject);
+    procedure btnProdutosClick(Sender: TObject);
   private
     FUsuario: TUsuario;
   public
@@ -44,6 +51,11 @@ end;
 procedure TfrmPrincipal.btnDadosPessoaisClick(Sender: TObject);
 begin
   TfrmAlterarDadosPessoais.Create(FUsuario, pnlForm);
+end;
+
+procedure TfrmPrincipal.btnProdutosClick(Sender: TObject);
+begin
+  TfrmCadastroProduto.Create(pnlForm, FUsuario);
 end;
 
 constructor TfrmPrincipal.Create(aUsuario: TUsuario);

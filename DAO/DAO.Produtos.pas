@@ -18,7 +18,7 @@ type
   public
     constructor Create(aCon: TFDConnection);
     destructor Destroy; override;
-    procedure Cadastar (aProduto: TProduto; aIdCasa: integer);
+    procedure Cadastar (aProduto: TProduto);
     function Get(aIdCasa: Integer): TList<TProduto>;
   end;
 
@@ -26,7 +26,7 @@ implementation
 
 { TDAOProdutos }
 
-procedure TDAOProdutos.Cadastar(aProduto: TProduto; aIdCasa: integer);
+procedure TDAOProdutos.Cadastar(aProduto: TProduto);
 var
   lQuery: TFDQuery;
 begin
@@ -39,10 +39,10 @@ begin
       lQuery.SQL.Clear;
       lQuery.SQL.Add('INSERT INTO produto (');
       lQuery.SQL.Add('  descricao, qtde, valor_ult_compra, ');
-      lQuery.SQL.Add('  valor_atual, und, validade, estoque_min, idCasa)');
+      lQuery.SQL.Add('  valor_atual, und, validade, estoque_min, id_casa)');
       lQuery.SQL.Add('VALUES (');
       lQuery.SQL.Add('  :descricao, :qtde, :valor_ult_compra,');
-      lQuery.SQL.Add('  :valor_atual, :und, :validade, :estoque_min, :idCasa)');
+      lQuery.SQL.Add('  :valor_atual, :und, :validade, :estoque_min, :id_casa)');
 
       lQuery.ParamByName('descricao').AsString := aProduto.Descricao;
       lQuery.ParamByName('qtde').AsFloat := aProduto.Qtde;
@@ -51,24 +51,20 @@ begin
       lQuery.ParamByName('und').AsString := aProduto.Und;
       lQuery.ParamByName('validade').AsDate := aProduto.Validade;
       lQuery.ParamByName('estoque_min').AsFloat := aProduto.EstoqueMin;
-      lQuery.ParamByName('id_casa').AsInteger := aIdCasa;
+      lQuery.ParamByName('id_casa').AsInteger := aProduto.IdCasa;
 
       lQuery.ExecSQL;
       FCOn.Commit;
-
     except
       on E: Exception do
       begin
-        //Rolback
         FCon.Rollback;
-        raise
+        raise Exception.Create('Erro ao cadastrar o produto: '+ e.Message);
       end;
     end;
-
   finally
     lQuery.Free;
   end;
-
 end;
 
 constructor TDAOProdutos.Create(aCon: TFDConnection);

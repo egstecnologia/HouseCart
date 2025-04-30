@@ -4,8 +4,11 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls,
-  Vcl.StdCtrls, Vcl.Buttons, Model.Produtos, Controller.Produtos;
+  System.ImageList, Vcl.ImgList, Vcl.Graphics, Vcl.Controls, Vcl.Forms,
+  Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons, Vcl.ComCtrls,
+  Model.Produtos,
+  Controller.Produtos,
+  View.PesquisaCasas, Model.Usuario;
 
 type
   TfrmCadastroProduto = class(TForm)
@@ -28,11 +31,8 @@ type
     edtQtde: TEdit;
     lblQtde: TLabel;
     shpQtde: TShape;
-    edtValidade: TEdit;
     lblValidade: TLabel;
-    shpValidade: TShape;
     edtEstMinimo: TEdit;
-    lblEstMinimo: TLabel;
     shpEstMinimo: TShape;
     pnlBotoes: TPanel;
     pnlBtnAlterar: TPanel;
@@ -47,26 +47,109 @@ type
     pnlVoltar: TPanel;
     shpBtnVoltar: TShape;
     btnVoltar: TSpeedButton;
+    lblEstMinimo: TLabel;
+    Label3: TLabel;
+    btnEdtCasa: TButtonedEdit;
+    dtValidade: TDateTimePicker;
+    imgList: TImageList;
     procedure btnIncluirClick(Sender: TObject);
+    procedure btnVoltarClick(Sender: TObject);
+    procedure btnEdtCasaRightButtonClick(Sender: TObject);
   private
-    { Private declarations }
+    FControler: TControllerProduto;
+    FUsuario: TUsuario;
+    function PopulateClass: TProduto;
+    procedure ShowPesquisaCasa;
   public
-    { Public declarations }
+    constructor Create (aOwner: TObject; aUsuario: TUsuario); reintroduce;
+    destructor Destroy; override;
   end;
-
 var
   frmCadastroProduto: TfrmCadastroProduto;
 
 implementation
 
+uses
+  Model.Casa;
+
 {$R *.dfm}
 
-procedure TfrmCadastroProduto.btnIncluirClick(Sender: TObject);
+procedure TfrmCadastroProduto.btnEdtCasaRightButtonClick(Sender: TObject);
 begin
+  ShowPesquisaCasa;
+end;
+
+procedure TfrmCadastroProduto.btnIncluirClick(Sender: TObject);
+var
+  lProduto: TProduto;
+begin
+  lProduto := PopulateClass;
   try
-    edtDescricaoProduto
-  except
-    on E: Exception do
+    try
+      FControler.IsEmpity(lProduto);
+      FControler.Cadastar(lProduto);
+      ShowMessage('Produto cadastrado com sucesso');
+    except
+      on E: Exception do
+        ShowMessage(e.Message);
+    end;
+  finally
+    lProduto.Free;
+  end;
+end;
+
+procedure TfrmCadastroProduto.btnVoltarClick(Sender: TObject);
+begin
+  Close;
+end;
+
+constructor TfrmCadastroProduto.Create(aOwner: TObject; aUsuario: TUsuario);
+begin
+  if not Assigned(frmCadastroProduto) then
+  begin
+    inherited Create(nil);
+    FControler := TControllerProduto.Create;
+    frmCadastroProduto := Self;
+    frmCadastroProduto.Parent := aOwner as TPanel;
+    frmCadastroProduto.Align := alClient;
+    frmcadastroProduto.BorderStyle := bsNone;
+    FUsuario := aUsuario;
+  end;
+  frmCadastroProduto.Show;
+end;
+
+destructor TfrmCadastroProduto.Destroy;
+begin
+  FControler.Free;
+  FUsuario.Free;
+  inherited;
+end;
+
+function TfrmCadastroProduto.PopulateClass: TProduto;
+begin
+   Result := TProduto.Create;
+   Result.Descricao := edtDescricaoProduto.Text;
+   Result.Und := edtUnd.Text;
+   Result.Qtde  := StrToFloatDef(edtQtde.Text, 0);
+   Result.Validade := dtValidade.Time;
+   Result.ValorAtual := StrToFloatDef(edtValorAtual.Text, 0);
+   Result.EstoqueMin := StrToFloatDef(edtEstMinimo.Text, 0);
+   Result.IdCasa := StrToIntDef(btnEdtCasa.Text, 0);
+end;
+
+procedure TfrmCadastroProduto.ShowPesquisaCasa;
+var
+  lCasa: TCasa;
+begin
+  lCasa := TCasa.Create;
+  try
+    TfrmPesquisaCasa.Create(FUsuario, lCasa);
+    if Assigned(lCasa) then
+    begin
+      btnEdtCasa.Text := IntToStr(lCasa.ID_CASA);
+    end;
+  finally
+    lCasa.Free;
   end;
 end;
 

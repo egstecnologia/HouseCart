@@ -117,6 +117,45 @@ object frmPrincipal: TfrmPrincipal
           ExplicitHeight = 22
         end
       end
+      object pnlBtnProdutos: TPanel
+        Left = 4
+        Top = 127
+        Width = 121
+        Height = 41
+        Align = alTop
+        BevelOuter = bvNone
+        Padding.Left = 3
+        Padding.Top = 3
+        Padding.Right = 3
+        Padding.Bottom = 3
+        TabOrder = 3
+        ExplicitTop = 86
+        object shpBtnProdutos: TShape
+          Left = 3
+          Top = 3
+          Width = 115
+          Height = 35
+          Align = alClient
+          Pen.Style = psClear
+          ExplicitLeft = 64
+          ExplicitTop = -8
+          ExplicitWidth = 65
+          ExplicitHeight = 65
+        end
+        object btnProdutos: TSpeedButton
+          Left = 3
+          Top = 3
+          Width = 115
+          Height = 35
+          Align = alClient
+          Caption = 'Produtos'
+          OnClick = btnProdutosClick
+          ExplicitLeft = 80
+          ExplicitTop = 8
+          ExplicitWidth = 23
+          ExplicitHeight = 22
+        end
+      end
     end
     object pnlForm: TPanel
       Left = 129

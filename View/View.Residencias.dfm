@@ -64,6 +64,8 @@ object frmResidencias: TfrmResidencias
       Height = 76
       Align = alBottom
       TabOrder = 1
+      ExplicitLeft = 2
+      ExplicitTop = 589
       object pnlBtnAlterar: TPanel
         Left = 31
         Top = 9

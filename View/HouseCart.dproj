@@ -146,6 +146,10 @@
         <DCCReference Include="..\DAO\DAO.Produtos.pas"/>
         <DCCReference Include="..\Model\Model.Produtos.pas"/>
         <DCCReference Include="..\Controller\Controller.Produtos.pas"/>
+        <DCCReference Include="View.PesquisaCasas.pas">
+            <Form>frmPesquisaCasa</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
