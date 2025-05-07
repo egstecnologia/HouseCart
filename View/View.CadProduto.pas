@@ -131,7 +131,7 @@ begin
    Result.Descricao := edtDescricaoProduto.Text;
    Result.Und := edtUnd.Text;
    Result.Qtde  := StrToFloatDef(edtQtde.Text, 0);
-   Result.Validade := dtValidade.Time;
+   Result.Validade := dtValidade.DateTime;
    Result.ValorAtual := StrToFloatDef(edtValorAtual.Text, 0);
    Result.EstoqueMin := StrToFloatDef(edtEstMinimo.Text, 0);
    Result.IdCasa := StrToIntDef(btnEdtCasa.Text, 0);

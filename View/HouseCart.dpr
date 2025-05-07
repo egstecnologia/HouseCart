@@ -20,7 +20,10 @@ uses
   DAO.Produtos in '..\DAO\DAO.Produtos.pas',
   Model.Produtos in '..\Model\Model.Produtos.pas',
   Controller.Produtos in '..\Controller\Controller.Produtos.pas',
-  View.PesquisaCasas in 'View.PesquisaCasas.pas' {frmPesquisaCasa};
+  View.PesquisaCasas in 'View.PesquisaCasas.pas' {frmPesquisaCasa},
+  View.PesquisaProduto in 'View.PesquisaProduto.pas' {frmPesquisarProduto},
+  Vcl.Themes,
+  Vcl.Styles;
 
 {$R *.res}
 
@@ -29,5 +32,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDM_Dados, DM_Dados);
   Application.CreateForm(TfrmLogin, frmLogin);
+  Application.CreateForm(TfrmPesquisarProduto, frmPesquisarProduto);
   Application.Run;
 end.

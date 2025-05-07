@@ -1703,6 +1703,8 @@ object frmLogin: TfrmLogin
         Color = clWhite
         ParentBackground = False
         TabOrder = 1
+        ExplicitLeft = 278
+        ExplicitTop = -4
         object pnlUserSenha: TPanel
           Left = 32
           Top = 48
@@ -1712,15 +1714,15 @@ object frmLogin: TfrmLogin
           TabOrder = 0
           object lblLogin: TLabel
             Left = 166
-            Top = 16
-            Width = 49
-            Height = 28
+            Top = 0
+            Width = 64
+            Height = 32
             Caption = 'Login'
-            Font.Charset = DEFAULT_CHARSET
+            Font.Charset = ANSI_CHARSET
             Font.Color = clWindowText
-            Font.Height = -20
-            Font.Name = 'Segoe UI'
-            Font.Style = []
+            Font.Height = -24
+            Font.Name = 'Segoe UI Emoji'
+            Font.Style = [fsBold]
             ParentFont = False
           end
           object lblSenha: TLabel
@@ -1763,24 +1765,20 @@ object frmLogin: TfrmLogin
             Height = 33
             Shape = stRoundRect
           end
-          object lblTextoCadastro: TLabel
-            Left = 152
-            Top = 232
-            Width = 74
-            Height = 15
-            Caption = 'Para cadastrar'
-          end
           object lblClickAqui: TLabel
-            Left = 234
-            Top = 227
-            Width = 69
-            Height = 21
-            Caption = 'Click Aqui'
+            Left = 226
+            Top = 231
+            Width = 105
+            Height = 25
+            Cursor = crHandPoint
+            Caption = 'Cadastrar-se'
+            Color = clHotLight
             Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -16
+            Font.Color = clMenuHighlight
+            Font.Height = -19
             Font.Name = 'Segoe UI'
-            Font.Style = []
+            Font.Style = [fsItalic, fsUnderline]
+            ParentColor = False
             ParentFont = False
             OnClick = lblClickAquiClick
           end
@@ -1789,6 +1787,7 @@ object frmLogin: TfrmLogin
             Top = 127
             Width = 24
             Height = 24
+            Cursor = crHandPoint
             AutoSize = True
             Picture.Data = {
               0954506E67496D61676589504E470D0A1A0A0000000D49484452000000180000
@@ -1874,30 +1873,6 @@ object frmLogin: TfrmLogin
               BC450000000049454E44AE426082}
             Visible = False
           end
-          object Label2: TLabel
-            Left = 21
-            Top = 0
-            Width = 72
-            Height = 15
-            Caption = 'FornPergunta'
-            OnClick = Label2Click
-          end
-          object Label3: TLabel
-            Left = 24
-            Top = 22
-            Width = 51
-            Height = 15
-            Caption = 'Descri'#231#227'o'
-            OnClick = Label3Click
-          end
-          object Label4: TLabel
-            Left = 24
-            Top = 43
-            Width = 40
-            Height = 15
-            Caption = 'Vinculo'
-            OnClick = Label4Click
-          end
           object pnlBtnEntrar: TPanel
             Left = 89
             Top = 172
@@ -1920,6 +1895,7 @@ object frmLogin: TfrmLogin
               Top = -3
               Width = 121
               Height = 33
+              Cursor = crHandPoint
               Caption = 'Entrar'
               Flat = True
               Font.Charset = DEFAULT_CHARSET
@@ -1945,7 +1921,7 @@ object frmLogin: TfrmLogin
               Top = 0
               Width = 115
               Height = 33
-              Brush.Color = 1542597
+              Brush.Color = 5524290
               Pen.Style = psClear
               Shape = stRoundRect
             end
@@ -1954,6 +1930,7 @@ object frmLogin: TfrmLogin
               Top = -3
               Width = 113
               Height = 33
+              Cursor = crHandPoint
               Caption = 'Sair'
               Flat = True
               Font.Charset = DEFAULT_CHARSET
@@ -1971,17 +1948,32 @@ object frmLogin: TfrmLogin
             Height = 23
             BevelOuter = bvNone
             BorderStyle = bsNone
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -16
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
             TabOrder = 2
+            TextHint = 'seuemail@email.com'
           end
           object edtSenha: TEdit
             Left = 99
-            Top = 128
+            Top = 123
             Width = 194
-            Height = 21
+            Height = 29
             BevelOuter = bvNone
             BorderStyle = bsNone
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -16
+            Font.Name = 'Segoe UI'
+            Font.Orientation = 2
+            Font.Style = []
+            ParentFont = False
             PasswordChar = '*'
             TabOrder = 3
+            TextHint = '**********'
           end
         end
       end
