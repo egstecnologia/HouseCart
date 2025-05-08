@@ -89,18 +89,22 @@ begin
   try
     lQuery.Close;
     lQuery.SQL.Clear;
-    lQuery.SQL.Add('SELECT  idProduto, descricao, qtde, valor_ult_compra,');
-    lQuery.SQL.Add('  valor_atual, und, validade, estoque_min, idCasa');
+    lQuery.SQL.Add('SELECT  id_produto, descricao, qtde, valor_ult_compra,');
+    lQuery.SQL.Add('  valor_atual, und, validade, estoque_min, id_casa');
     lQuery.SQL.Add('FROM produto');
-    lQuery.SQL.Add('WHERE');
-    lQuery.SQL.Add('  id_casa = :id_casa');
-    lQuery.ParamByName('id_casa').AsInteger := aIdCasa;
+
+    if aIdCasa <> 0 then
+    begin
+      lQuery.SQL.Add('WHERE');
+      lQuery.SQL.Add('  id_casa = :id_casa');
+      lQuery.ParamByName('id_casa').AsInteger := aIdCasa;
+    end;
     lQuery.Open;
 
     while not lQuery.Eof do
     begin
       lProduto := TProduto.Create;
-      lProduto.IdProduto := lQuery.FieldByName('idProduto').AsInteger;
+      lProduto.IdProduto := lQuery.FieldByName('id_produto').AsInteger;
       lProduto.Descricao := lQuery.FieldByName('descricao').AsString;
       lProduto.Qtde := lQuery.FieldByName('qtde').AsFloat;
       lProduto.ValorUltCompra := lQuery.FieldByName('valor_ult_compra').AsFloat;
@@ -108,12 +112,11 @@ begin
       lProduto.Und := lQuery.FieldByName('und').AsString;
       lProduto.Validade := lQuery.FieldByName('validade').AsDateTime;
       lProduto.EstoqueMin := lQuery.FieldByName('estoque_min').AsFloat;
-      lProduto.IdCasa := lQuery.FieldByName('idCasa').AsInteger;
+      lProduto.IdCasa := lQuery.FieldByName('id_casa').AsInteger;
       Result.Add(lProduto);
       lQuery.Next;
     end;
-
-
+    Result.TrimExcess;
   finally
     lQuery.Free;
   end;

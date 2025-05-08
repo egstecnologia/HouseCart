@@ -7,8 +7,8 @@ uses
   System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   Vcl.ExtCtrls, Vcl.Buttons,
-  View.Residencias, View.DadosPessoais, View.CadProduto,
-  Model.Usuario, Model.Produtos;
+  Model.Usuario, Model.Produtos,
+  View.Residencias, View.DadosPessoais, View.CadProduto, View.PesquisaProduto;
 
 type
   TfrmPrincipal = class(TForm)
@@ -55,7 +55,7 @@ end;
 
 procedure TfrmPrincipal.btnProdutosClick(Sender: TObject);
 begin
-  TfrmCadastroProduto.Create(pnlForm, FUsuario);
+  TFrmPesquisarProduto.Create(FUsuario, pnlForm)
 end;
 
 constructor TfrmPrincipal.Create(aUsuario: TUsuario);

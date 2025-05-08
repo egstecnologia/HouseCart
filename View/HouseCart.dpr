@@ -32,6 +32,5 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDM_Dados, DM_Dados);
   Application.CreateForm(TfrmLogin, frmLogin);
-  Application.CreateForm(TfrmPesquisarProduto, frmPesquisarProduto);
   Application.Run;
 end.

@@ -129,7 +129,6 @@ object frmPrincipal: TfrmPrincipal
         Padding.Right = 3
         Padding.Bottom = 3
         TabOrder = 3
-        ExplicitTop = 86
         object shpBtnProdutos: TShape
           Left = 3
           Top = 3
@@ -150,10 +149,7 @@ object frmPrincipal: TfrmPrincipal
           Align = alClient
           Caption = 'Produtos'
           OnClick = btnProdutosClick
-          ExplicitLeft = 80
-          ExplicitTop = 8
-          ExplicitWidth = 23
-          ExplicitHeight = 22
+          ExplicitLeft = 4
         end
       end
     end

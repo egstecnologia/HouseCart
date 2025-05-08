@@ -10,6 +10,7 @@ object frmPesquisarProduto: TfrmPesquisarProduto
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnShow = FormShow
   TextHeight = 15
   object pnlContainer: TPanel
     Left = 0
@@ -18,10 +19,6 @@ object frmPesquisarProduto: TfrmPesquisarProduto
     Height = 638
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = 448
-    ExplicitTop = 320
-    ExplicitWidth = 185
-    ExplicitHeight = 41
     object pnlPesquisa: TPanel
       Left = 1
       Top = 1
@@ -30,7 +27,6 @@ object frmPesquisarProduto: TfrmPesquisarProduto
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 0
-      ExplicitTop = 0
       object lblFiltro: TLabel
         Left = 8
         Top = 9
@@ -72,9 +68,10 @@ object frmPesquisarProduto: TfrmPesquisarProduto
       end
       object cbFiltro: TComboBox
         Left = 8
-        Top = 35
+        Top = 36
         Width = 177
         Height = 31
+        Style = csDropDownList
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -17
@@ -116,6 +113,9 @@ object frmPesquisarProduto: TfrmPesquisarProduto
         Top = 35
         Width = 193
         Height = 31
+        BevelInner = bvNone
+        BevelOuter = bvNone
+        Style = csDropDownList
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -17
@@ -137,8 +137,7 @@ object frmPesquisarProduto: TfrmPesquisarProduto
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 1
-      ExplicitHeight = 424
-      object ListView1: TListView
+      object lvProdutos: TListView
         Left = 0
         Top = 0
         Width = 1058
@@ -152,6 +151,7 @@ object frmPesquisarProduto: TfrmPesquisarProduto
           end
           item
             Caption = 'Descri'#231#227'o'
+            Width = 360
           end
           item
             Caption = 'UND'
@@ -161,18 +161,23 @@ object frmPesquisarProduto: TfrmPesquisarProduto
           end
           item
             Caption = 'Validade'
+            Width = 90
           end
           item
             Caption = 'Est. Minimo'
+            Width = 97
           end
           item
             Caption = 'Valor Atual'
+            Width = 90
           end
           item
             Caption = 'Valor Ult. Compra'
+            Width = 140
           end
           item
             Caption = 'Casa'
+            Width = 130
           end>
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -186,8 +191,6 @@ object frmPesquisarProduto: TfrmPesquisarProduto
         ParentFont = False
         TabOrder = 0
         ViewStyle = vsReport
-        ExplicitLeft = 8
-        ExplicitTop = 16
       end
     end
     object pnlBtns: TPanel
@@ -315,6 +318,7 @@ object frmPesquisarProduto: TfrmPesquisarProduto
           Font.Name = 'Segoe UI'
           Font.Style = []
           ParentFont = False
+          OnClick = btnIncluirClick
           ExplicitLeft = 43
           ExplicitTop = 11
         end

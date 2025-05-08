@@ -48,7 +48,7 @@ end;
 
 function TControllerProduto.Get(aIdCasa: Integer): TList<TProduto>;
 begin
-  FDAO.Get(aIdCasa);
+  Result := FDAO.Get(aIdCasa);
 end;
 
 procedure TControllerProduto.IsEmpity(aProduto: TProduto);
