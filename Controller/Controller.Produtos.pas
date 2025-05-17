@@ -18,7 +18,9 @@ type
     constructor Create;
     destructor Destroy; override;
     procedure Cadastar (aProduto: TProduto);
-    function Get(aIdCasa: Integer): TList<TProduto>;
+    function GetList(aIdCasa: Integer = 0; aTpFilter: Integer = 0;
+      aSearchText: String = ''): TList<TProduto>;
+    function Get(aIdProduto: integer): TProduto;
     procedure IsEmpity (aProduto: TProduto);
   end;
 
@@ -46,9 +48,29 @@ begin
   inherited;
 end;
 
-function TControllerProduto.Get(aIdCasa: Integer): TList<TProduto>;
+function TControllerProduto.Get(aIdProduto: integer): TProduto;
 begin
-  Result := FDAO.Get(aIdCasa);
+  try
+    Result := FDAO.Get(aIdProduto);
+  except
+    on E: Exception do
+    begin
+      raise Exception.Create('Ouve um erro'+ e.Message);
+    end;
+  end;
+end;
+
+function TControllerProduto.GetList(aIdCasa: Integer = 0; aTpFilter: Integer = 0;
+  aSearchText: String = ''): TList<TProduto>;
+begin
+  try
+    Result := FDAO.GetList(aIdCasa, aTpFilter, aSearchText);
+  except
+    on E: Exception do
+    begin
+      raise Exception.Create('Ouve um erro'+ e.Message);
+    end;
+  end;
 end;
 
 procedure TControllerProduto.IsEmpity(aProduto: TProduto);

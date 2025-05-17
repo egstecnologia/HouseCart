@@ -85,7 +85,7 @@ object frmPesquisarProduto: TfrmPesquisarProduto
           'CODIGO'
           'DESCRI'#199#195'O')
       end
-      object btnEdtpesquisarProduto: TButtonedEdit
+      object edtpesquisarProduto: TButtonedEdit
         Left = 191
         Top = 34
         Width = 633
@@ -106,7 +106,9 @@ object frmPesquisarProduto: TfrmPesquisarProduto
         RightButton.PressedImageIndex = 0
         RightButton.Visible = True
         TabOrder = 1
-        Text = 'Pesquisar Produto'
+        TextHint = 'Pesquisar Produto'
+        OnKeyPress = edtpesquisarProdutoKeyPress
+        OnRightButtonClick = edtpesquisarProdutoRightButtonClick
       end
       object cbCasa: TComboBox
         Left = 848
@@ -237,6 +239,7 @@ object frmPesquisarProduto: TfrmPesquisarProduto
           Font.Name = 'Segoe UI'
           Font.Style = []
           ParentFont = False
+          OnClick = btnAlterarClick
           ExplicitLeft = 36
           ExplicitTop = 0
         end

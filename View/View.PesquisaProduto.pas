@@ -31,7 +31,7 @@ type
     shpBtnVoltar: TShape;
     btnVoltar: TSpeedButton;
     cbFiltro: TComboBox;
-    btnEdtpesquisarProduto: TButtonedEdit;
+    edtpesquisarProduto: TButtonedEdit;
     cbCasa: TComboBox;
     imgListProd: TImageList;
     lblFiltro: TLabel;
@@ -39,17 +39,18 @@ type
     lblCasa: TLabel;
     procedure FormShow(Sender: TObject);
     procedure btnIncluirClick(Sender: TObject);
+    procedure edtpesquisarProdutoRightButtonClick(Sender: TObject);
+    procedure edtpesquisarProdutoKeyPress(Sender: TObject; var Key: Char);
+    procedure btnAlterarClick(Sender: TObject);
   private
     FControllerCasa: TControllerCasa;
     FControllerProduto: TControllerProduto;
-    FCasa: TCasa;
     FUsuario: TUsuario;
-    FProdutos: TProduto;
   public
     constructor Create(aUsuario: TUsuario; aOwner: TObject); reintroduce;
     destructor Destroy; override;
     procedure PopulateComboCasas;
-    procedure PopulateListView;
+    procedure PopulateListView(const AListProdutos: TList<TProduto>);
   end;
 
 var
@@ -58,6 +59,58 @@ var
 implementation
 
 {$R *.dfm}
+
+
+procedure TfrmPesquisarProduto.edtpesquisarProdutoKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  if Key = #13 then
+    edtpesquisarProdutoRightButtonClick(Self);
+end;
+
+procedure TfrmPesquisarProduto.edtpesquisarProdutoRightButtonClick(
+  Sender: TObject);
+var
+  lIdCasa: Integer;
+  lListProdutos: TList<TProduto>;
+begin
+  lListProdutos := TList<TProduto>.Create;
+  try
+    try
+      lIdCasa := 0;
+      if edtpesquisarProduto.Text = '' then
+        raise Exception.Create('Preencha o campo de pesquisa');
+      if cbCasa.ItemIndex <> 0 then
+        lIdCasa := TCasa(cbCasa.Items.Objects[cbCasa.ItemIndex]).ID_CASA;
+
+      lListProdutos := FControllerProduto.GetList(lIdCasa, cbFiltro.ItemIndex + 1,
+        edtpesquisarProduto.text);
+      PopulateListView(lListProdutos);
+    except
+      on E: Exception do
+      begin
+        ShowMessage(e.Message);
+      end;
+    end;
+  finally
+    lListprodutos.Free;
+  end;
+end;
+
+procedure TfrmPesquisarProduto.btnAlterarClick(Sender: TObject);
+var
+  lProduto: TProduto;
+begin
+  try
+    if Assigned(lvProdutos.Selected) then
+    begin
+      lProduto := FControllerProduto.Get(StrToInt(lvProdutos.Selected.Caption));
+      TfrmCadastroProduto.Create(Self.Parent, FUsuario, lProduto);
+    end;
+  finally
+    lProduto.Free;
+  end;
+end;
 
 procedure TfrmPesquisarProduto.btnIncluirClick(Sender: TObject);
 begin
@@ -87,9 +140,16 @@ begin
 end;
 
 procedure TfrmPesquisarProduto.FormShow(Sender: TObject);
+var
+  lListProduto: TList<TProduto>;
 begin
-  PopulateComboCasas;
-  PopulateListView;
+  try
+    lListProduto := FControllerProduto.GetList;
+    PopulateComboCasas;
+    PopulateListView(lListProduto);
+  finally
+    lListProduto.Free;
+  end;
 end;
 
 procedure TfrmPesquisarProduto.PopulateComboCasas;
@@ -111,36 +171,26 @@ begin
   cbCasa.ItemIndex := 0;
 end;
 
-procedure TfrmPesquisarProduto.PopulateListView;
+procedure TfrmPesquisarProduto.PopulateListView(const AListProdutos: TList<TProduto>);
 var
   lProduto: TProduto;
-  lListProdutos: Tlist<TProduto>;
   lItem: TListItem;
-  lIDCasa: Integer;
 begin
-  lIdCasa := 0;
-  if cbCasa.ItemIndex <> 0 then
-    lIdCasa := TCasa(cbCasa.Items.Objects[cbCasa.ItemIndex]).ID_CASA;
-  lListProdutos := FControllerProduto.Get(lIdCasa);
-  try
-    lvProdutos.Items.Clear;
-    for lProduto in lListProdutos do
-    begin
-      lItem := lvProdutos.Items.Add;
-      lItem.Caption := IntToStr(lProduto.IdProduto);
-      lItem.SubItems.Add(lProduto.Descricao);
-      lItem.SubItems.Add(lproduto.Und);
-      lItem.SubItems.Add(FloatToStr(lProduto.Qtde));
-      lItem.SubItems.Add(DateToStr(lproduto.Validade));
-      lItem.SubItems.Add(FloatToStr(lProduto.EstoqueMin));
-      lItem.SubItems.Add(FormatFloat('R$ ##.#0,00', lProduto.ValorAtual));
-      lItem.SubItems.Add(FormatFloat('R$ ##.#0,00', lProduto.ValorUltCompra));
-      lItem.SubItems.Add(IntToStr(lProduto.IdCasa));
-    end;
-    lvProdutos.Update;
-  finally
-    lListProdutos.Free;
+  lvProdutos.Items.Clear;
+  for lProduto in AListProdutos do
+  begin
+    lItem := lvProdutos.Items.Add;
+    lItem.Caption := IntToStr(lProduto.IdProduto);
+    lItem.SubItems.Add(lProduto.Descricao);
+    lItem.SubItems.Add(lproduto.Und);
+    lItem.SubItems.Add(FloatToStr(lProduto.Qtde));
+    lItem.SubItems.Add(DateToStr(lproduto.Validade));
+    lItem.SubItems.Add(FloatToStr(lProduto.EstoqueMin));
+    lItem.SubItems.Add(FormatFloat('R$ ##.#0,00', lProduto.ValorAtual));
+    lItem.SubItems.Add(FormatFloat('R$ ##.#0,00', lProduto.ValorUltCompra));
+    lItem.SubItems.Add(IntToStr(lProduto.IdCasa));
   end;
+  lvProdutos.Update;
 end;
 
 end.

@@ -60,8 +60,10 @@ type
     FUsuario: TUsuario;
     function PopulateClass: TProduto;
     procedure ShowPesquisaCasa;
+    procedure ListarProduto(aProduto: TProduto);
   public
-    constructor Create (aOwner: TObject; aUsuario: TUsuario); reintroduce;
+    constructor Create (aOwner: TObject; aUsuario: TUsuario;
+      aProduto: TProduto = nil); reintroduce;
     destructor Destroy; override;
   end;
 var
@@ -103,7 +105,8 @@ begin
   Close;
 end;
 
-constructor TfrmCadastroProduto.Create(aOwner: TObject; aUsuario: TUsuario);
+constructor TfrmCadastroProduto.Create(aOwner: TObject; aUsuario: TUsuario;
+  aProduto: TProduto = nil);
 begin
   if not Assigned(frmCadastroProduto) then
   begin
@@ -114,6 +117,12 @@ begin
     frmCadastroProduto.Align := alClient;
     frmcadastroProduto.BorderStyle := bsNone;
     FUsuario := aUsuario;
+
+    if Assigned (aProduto) then
+    begin
+      btnIncluir.Enabled := False;
+      ListarProduto(aProduto);
+    end;
   end;
   frmCadastroProduto.Show;
 end;
@@ -151,6 +160,17 @@ begin
   finally
     lCasa.Free;
   end;
+end;
+
+procedure TfrmCadastroProduto.ListarProduto(aProduto: TProduto);
+begin
+  edtDescricaoProduto.Text := aProduto.Descricao;
+  edtUnd.Text := aProduto.Und;
+  edtQtde.Text := FloatToStr(aProduto.Qtde);
+  dtValidade.DateTime :=  aProduto.Validade ;
+  edtValorAtual.Text := FormatFloat('R$ ##,##0.00', aProduto.ValorAtual);
+  edtEstMinimo.Text := FloatToStr(aProduto.EstoqueMin);
+  btnEdtCasa.Text := IntToStr(aProduto.IdCasa);
 end;
 
 end.

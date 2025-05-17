@@ -1,7 +1,6 @@
 object frmResidencias: TfrmResidencias
   Left = 0
   Top = 0
-  Caption = 'Resid'#234'ncias'
   ClientHeight = 661
   ClientWidth = 994
   Color = clBtnFace
@@ -64,8 +63,6 @@ object frmResidencias: TfrmResidencias
       Height = 76
       Align = alBottom
       TabOrder = 1
-      ExplicitLeft = 2
-      ExplicitTop = 589
       object pnlBtnAlterar: TPanel
         Left = 31
         Top = 9
