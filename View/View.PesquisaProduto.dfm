@@ -81,6 +81,7 @@ object frmPesquisarProduto: TfrmPesquisarProduto
         ParentFont = False
         TabOrder = 0
         Text = 'CODIGO'
+        OnChange = cbFiltroChange
         Items.Strings = (
           'CODIGO'
           'DESCRI'#199#195'O')
@@ -99,6 +100,7 @@ object frmPesquisarProduto: TfrmPesquisarProduto
         Font.Name = 'Segoe UI'
         Font.Style = []
         Images = imgListProd
+        NumbersOnly = True
         ParentFont = False
         RightButton.DisabledImageIndex = 0
         RightButton.HotImageIndex = 0
@@ -363,6 +365,7 @@ object frmPesquisarProduto: TfrmPesquisarProduto
           Font.Name = 'Segoe UI'
           Font.Style = []
           ParentFont = False
+          OnClick = btnVoltarClick
           ExplicitLeft = 51
           ExplicitTop = 11
         end

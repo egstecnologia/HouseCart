@@ -173,7 +173,6 @@ end;
 
 destructor TDAOUsuario.Destroy;
 begin
-  FConn.Free;
   inherited;
 end;
 

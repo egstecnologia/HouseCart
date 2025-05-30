@@ -42,6 +42,8 @@ type
     procedure edtpesquisarProdutoRightButtonClick(Sender: TObject);
     procedure edtpesquisarProdutoKeyPress(Sender: TObject; var Key: Char);
     procedure btnAlterarClick(Sender: TObject);
+    procedure btnVoltarClick(Sender: TObject);
+    procedure cbFiltroChange(Sender: TObject);
   private
     FControllerCasa: TControllerCasa;
     FControllerProduto: TControllerProduto;
@@ -101,20 +103,27 @@ procedure TfrmPesquisarProduto.btnAlterarClick(Sender: TObject);
 var
   lProduto: TProduto;
 begin
-  try
-    if Assigned(lvProdutos.Selected) then
-    begin
-      lProduto := FControllerProduto.Get(StrToInt(lvProdutos.Selected.Caption));
-      TfrmCadastroProduto.Create(Self.Parent, FUsuario, lProduto);
-    end;
-  finally
-    lProduto.Free;
+  lProduto := TProduto.Create;
+  if Assigned(lvProdutos.Selected) then
+  begin
+    lProduto := FControllerProduto.Get(StrToInt(lvProdutos.Selected.Caption));
+    TfrmCadastroProduto.Create(Self.Parent, FUsuario, lProduto);
   end;
 end;
 
 procedure TfrmPesquisarProduto.btnIncluirClick(Sender: TObject);
 begin
   TfrmCadastroProduto.Create(Self.Parent, FUsuario);
+end;
+
+procedure TfrmPesquisarProduto.btnVoltarClick(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TfrmPesquisarProduto.cbFiltroChange(Sender: TObject);
+begin
+  edtpesquisarProduto.NumbersOnly := cbFiltro.ItemIndex = 0;
 end;
 
 constructor TfrmPesquisarProduto.Create(aUsuario: TUsuario; aOwner: TObject);

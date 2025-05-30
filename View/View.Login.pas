@@ -44,6 +44,9 @@ type
     procedure Label4Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure edtLoginKeyPress(Sender: TObject; var Key: Char);
+    procedure edtSenhaKeyPress(Sender: TObject; var Key: Char);
+    procedure btnSairClick(Sender: TObject);
   private
     FController : TControllerUsuario;
   public
@@ -59,9 +62,35 @@ uses
 
 {$R *.dfm}
 
+procedure TfrmLogin.btnSairClick(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TfrmLogin.edtLoginKeyPress(Sender: TObject; var Key: Char);
+begin
+  if key = #13 then
+  begin
+    key := #0;
+    Perform(WM_NEXTDLGCTL, 0, 0);
+  end;
+end;
+
+procedure TfrmLogin.edtSenhaKeyPress(Sender: TObject; var Key: Char);
+begin
+  if key = #13 then
+  begin
+    key := #0;
+    Perform(WM_NEXTDLGCTL, 0, 0);
+    sbtnEntrar.Click;
+  end;
+end;
+
 procedure TfrmLogin.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   FController.Free;
+//  Action := caFree;
+//  frmLogin := nil;
 end;
 
 procedure TfrmLogin.FormCreate(Sender: TObject);
@@ -116,12 +145,9 @@ end;
 
 procedure TfrmLogin.lblClickAquiClick(Sender: TObject);
 begin
-  frmCadastro := TfrmCadastro.Create(nil);
-  try
-    frmCadastro.ShowModal;
-  finally
-    FreeAndNil(frmCadastro);
-  end;
+  if not Assigned(frmCadastro) then
+    frmCadastro := TfrmCadastro.Create(nil);
+  frmCadastro.ShowModal;
 end;
 
 procedure TfrmLogin.sbtnEntrarClick(Sender: TObject);

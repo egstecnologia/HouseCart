@@ -1703,11 +1703,9 @@ object frmLogin: TfrmLogin
         Color = clWhite
         ParentBackground = False
         TabOrder = 1
-        ExplicitLeft = 278
-        ExplicitTop = -4
         object pnlUserSenha: TPanel
           Left = 32
-          Top = 48
+          Top = 49
           Width = 353
           Height = 258
           BevelOuter = bvNone
@@ -1939,6 +1937,7 @@ object frmLogin: TfrmLogin
               Font.Name = 'Segoe UI'
               Font.Style = []
               ParentFont = False
+              OnClick = btnSairClick
             end
           end
           object edtLogin: TEdit
@@ -1956,10 +1955,11 @@ object frmLogin: TfrmLogin
             ParentFont = False
             TabOrder = 2
             TextHint = 'seuemail@email.com'
+            OnKeyPress = edtLoginKeyPress
           end
           object edtSenha: TEdit
             Left = 99
-            Top = 123
+            Top = 125
             Width = 194
             Height = 29
             BevelOuter = bvNone
@@ -1974,6 +1974,7 @@ object frmLogin: TfrmLogin
             PasswordChar = '*'
             TabOrder = 3
             TextHint = '**********'
+            OnKeyPress = edtSenhaKeyPress
           end
         end
       end

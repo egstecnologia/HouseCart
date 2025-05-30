@@ -10,6 +10,7 @@ object frmCadastroProduto: TfrmCadastroProduto
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnClose = FormClose
   TextHeight = 15
   object pnlConteiner: TPanel
     Left = 0
@@ -292,7 +293,7 @@ object frmCadastroProduto: TfrmCadastroProduto
           Left = 184
           Top = 224
           Width = 89
-          Height = 28
+          Height = 23
           Images = imgList
           LeftButton.DisabledImageIndex = 0
           LeftButton.HotImageIndex = 0
@@ -353,7 +354,7 @@ object frmCadastroProduto: TfrmCadastroProduto
           Width = 137
           Height = 35
           Align = alClient
-          Caption = 'Alterar'
+          Caption = 'Gravar'
           ExplicitLeft = 36
           ExplicitTop = 0
         end

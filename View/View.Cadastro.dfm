@@ -1937,7 +1937,8 @@ object frmCadastro: TfrmCadastro
             Font.Style = []
             ParentFont = False
             PasswordChar = '*'
-            TabOrder = 2
+            TabOrder = 1
+            OnKeyPress = edtCadSenhaKeyPress
           end
           object pnlBtnEntrar: TPanel
             Left = 111
@@ -1946,7 +1947,7 @@ object frmCadastro: TfrmCadastro
             Height = 33
             BevelOuter = bvNone
             ParentBackground = False
-            TabOrder = 0
+            TabOrder = 4
             object shpEntrar: TShape
               Left = 0
               Top = 0
@@ -2003,6 +2004,7 @@ object frmCadastro: TfrmCadastro
               Font.Name = 'Segoe UI'
               Font.Style = []
               ParentFont = False
+              OnClick = btnSairClick
             end
           end
           object edtEmail: TEdit
@@ -2018,7 +2020,8 @@ object frmCadastro: TfrmCadastro
             Font.Name = 'Segoe UI'
             Font.Style = []
             ParentFont = False
-            TabOrder = 4
+            TabOrder = 3
+            OnKeyPress = edtEmailKeyPress
           end
           object edtCadUsuario: TEdit
             Left = 123
@@ -2033,7 +2036,8 @@ object frmCadastro: TfrmCadastro
             Font.Name = 'Segoe UI'
             Font.Style = []
             ParentFont = False
-            TabOrder = 1
+            TabOrder = 0
+            OnKeyPress = edtCadUsuarioKeyPress
           end
           object edtConfSenha: TEdit
             Left = 121
@@ -2049,7 +2053,8 @@ object frmCadastro: TfrmCadastro
             Font.Style = []
             ParentFont = False
             PasswordChar = '*'
-            TabOrder = 3
+            TabOrder = 2
+            OnKeyPress = edtConfSenhaKeyPress
           end
         end
       end

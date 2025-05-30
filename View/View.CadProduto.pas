@@ -55,6 +55,7 @@ type
     procedure btnIncluirClick(Sender: TObject);
     procedure btnVoltarClick(Sender: TObject);
     procedure btnEdtCasaRightButtonClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     FControler: TControllerProduto;
     FUsuario: TUsuario;
@@ -102,6 +103,7 @@ end;
 
 procedure TfrmCadastroProduto.btnVoltarClick(Sender: TObject);
 begin
+  frmCadastroProduto := nil;
   Close;
 end;
 
@@ -116,13 +118,13 @@ begin
     frmCadastroProduto.Parent := aOwner as TPanel;
     frmCadastroProduto.Align := alClient;
     frmcadastroProduto.BorderStyle := bsNone;
+    Self.OnClose := FormClose;
     FUsuario := aUsuario;
-
-    if Assigned (aProduto) then
-    begin
-      btnIncluir.Enabled := False;
-      ListarProduto(aProduto);
-    end;
+  end;
+  if Assigned (aProduto) then
+  begin
+    btnIncluir.Enabled := False;
+    ListarProduto(aProduto);
   end;
   frmCadastroProduto.Show;
 end;
@@ -132,6 +134,13 @@ begin
   FControler.Free;
   FUsuario.Free;
   inherited;
+end;
+
+procedure TfrmCadastroProduto.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  Action := caFree;
+//  frmCadastroProduto := nil;
 end;
 
 function TfrmCadastroProduto.PopulateClass: TProduto;
@@ -164,13 +173,17 @@ end;
 
 procedure TfrmCadastroProduto.ListarProduto(aProduto: TProduto);
 begin
-  edtDescricaoProduto.Text := aProduto.Descricao;
-  edtUnd.Text := aProduto.Und;
-  edtQtde.Text := FloatToStr(aProduto.Qtde);
-  dtValidade.DateTime :=  aProduto.Validade ;
-  edtValorAtual.Text := FormatFloat('R$ ##,##0.00', aProduto.ValorAtual);
-  edtEstMinimo.Text := FloatToStr(aProduto.EstoqueMin);
-  btnEdtCasa.Text := IntToStr(aProduto.IdCasa);
+  try
+    edtDescricaoProduto.Text := aProduto.Descricao;
+    edtUnd.Text := aProduto.Und;
+    edtQtde.Text := FloatToStr(aProduto.Qtde);
+    dtValidade.DateTime :=  aProduto.Validade ;
+    edtValorAtual.Text := FormatFloat('R$ ##,##0.00', aProduto.ValorAtual);
+    edtEstMinimo.Text := FloatToStr(aProduto.EstoqueMin);
+    btnEdtCasa.Text := IntToStr(aProduto.IdCasa);
+  finally
+    aProduto.Free;
+  end;
 end;
 
 end.

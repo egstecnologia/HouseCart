@@ -45,7 +45,7 @@ implementation
 
 procedure TfrmPrincipal.btnCasasClick(Sender: TObject);
 begin
-    TfrmResidencias.Create(FUsuario, pnlForm);
+  TfrmResidencias.Create(FUsuario, pnlForm);
 end;
 
 procedure TfrmPrincipal.btnDadosPessoaisClick(Sender: TObject);
